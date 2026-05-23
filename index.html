@@ -2,6 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
+<script>/* זיהוי הטמעה ב-iframe (וויקס): מבטל את נעילת המסך המלא כדי שהדף יזרום טבעי וישתלב באתר. בלינק הישיר הנעילה נשמרת. */try{if(window.self!==window.top){document.documentElement.classList.add('embedded');}}catch(e){document.documentElement.classList.add('embedded');}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>בית הספר ליום ראשון של נופר · Nofar's Hebrew Sunday School</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -62,6 +63,12 @@ body{
 body.locked{overflow:hidden;height:100vh;height:100dvh}
 /* When body is locked, make sure hero fills the viewport so the locked 100vh shows the hero, not a blank cream block. */
 body.locked #hero{min-block-size:100vh;min-block-size:100dvh}
+/* ─── מצב הטמעה (iframe / וויקס): ביטול הנעילה, הדף זורם וכל התוכן גלוי מיד ─── */
+html.embedded body,
+html.embedded body.locked{overflow:visible;height:auto;min-height:0}
+html.embedded body #hero{min-block-size:auto}
+html.embedded body #page{opacity:1;visibility:visible;transition:none}
+html.embedded .reveal{opacity:1;transform:none;transition:none}
 body[lang="fr"]{font-family:"Cormorant Garamond", "Frank Ruhl Libre", serif}
 body[lang="fr"] .num-marker{font-family:var(--serif-fr)}
 
