@@ -874,6 +874,22 @@ body[lang="fr"] .tl-body h3{font-family:var(--serif-fr);font-weight:600}
   border-color:var(--terracotta);
   border-style:solid;
 }
+/* תווית "אופציונלי" קטנה ליד הכותרת בטיימליין */
+.tl-body h3 .tl-opt-tag{
+  display:inline-block;
+  margin-inline-start:10px;
+  padding:3px 11px;
+  background:rgba(224,135,90,.14);
+  color:var(--terracotta);
+  border-radius:999px;
+  font-family:var(--serif-fr);
+  font-style:italic;
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.04em;
+  vertical-align:middle;
+  line-height:1;
+}
 .tl-item.afternoon .tl-body .meta{color:var(--terracotta)}
 .tl-item.afternoon .tl-body .notes{
   margin-block-start:10px;
@@ -1467,6 +1483,62 @@ body[lang="fr"] .staff-body h3{font-family:var(--serif-fr);font-weight:600}
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   BRING / מה להביא - small section between sibling discount and registration
+   ═══════════════════════════════════════════════════════════════ */
+.bring-sec{
+  background:var(--cream-warm);
+  padding-block:50px;
+}
+@media (min-width:768px){ .bring-sec{padding-block:70px} }
+.bring-sec .section-head{text-align:center;margin-block-end:32px}
+.bring-sec h2{
+  font-family:var(--serif-he);
+  font-weight:700;
+  font-size:clamp(1.6rem, 5vw, 2.2rem);
+  color:var(--ink);
+  margin:0;
+}
+body[lang="fr"] .bring-sec h2{font-family:var(--serif-fr);font-weight:600}
+.bring-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:14px;
+  max-inline-size:880px;
+  margin-inline:auto;
+}
+@media (min-width:780px){ .bring-grid{grid-template-columns:repeat(3, 1fr);gap:18px} }
+.bring-card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--r-lg);
+  padding:22px 22px 24px;
+  box-shadow:var(--shadow-card);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:14px;
+}
+.bring-icon{
+  inline-size:54px;
+  block-size:54px;
+  border-radius:50%;
+  background:rgba(224,135,90,.12);
+  color:var(--terracotta);
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+.bring-icon svg{inline-size:28px;block-size:28px}
+.bring-card p{
+  margin:0;
+  font-size:.98rem;
+  line-height:1.55;
+  color:var(--ink);
+  font-weight:500;
+}
+
+/* ═══════════════════════════════════════════════════════════════
    REGISTRATION - the bottom action: tiers + sibling + contract
    ═══════════════════════════════════════════════════════════════ */
 .registration{background:var(--cream)}
@@ -1720,6 +1792,13 @@ body[lang="fr"] .daycal-body b{font-family:var(--serif-fr);font-weight:600}
   line-height:1.65;
   margin:0;
 }
+.daycal-body p.daycal-disclaimer{
+  margin-block-start:14px;
+  padding-block-start:14px;
+  border-block-start:1px dashed var(--line);
+  font-size:.92rem;
+}
+.daycal-body p.daycal-disclaimer strong{color:var(--ink);font-weight:700}
 @media (min-width:768px){ .daycal-body p{font-size:1.02rem} }
 .daycal-link{
   display:inline-flex;
@@ -1855,6 +1934,7 @@ body[lang="fr"] .tier h3{font-family:var(--serif-fr);font-weight:600}
 .tier .price{
   display:flex;
   align-items:baseline;
+  flex-wrap:wrap;
   gap:6px;
   margin-block-start:4px;
 }
@@ -2898,6 +2978,18 @@ body[lang="fr"] .hero-words h1{font-style:italic}
 }
 body[lang="fr"] .time-block .hours{font-family:var(--serif-fr);font-weight:700}
 .time-block .label{font-size:1rem;color:var(--ink-soft);line-height:1.5}
+/* חלק הצהרון (Sunday Club) בצבע טרקוטה - הדגשה שזו הוספה אופציונלית */
+.time-block .hours-opt{
+  display:block;
+  color:var(--terracotta);
+  font-family:var(--serif-he);
+  font-weight:600;
+  font-size:1rem;
+  letter-spacing:.02em;
+  margin-block-start:-2px;
+}
+body[lang="fr"] .time-block .hours-opt{font-family:var(--serif-fr)}
+.time-block .label-opt{color:var(--terracotta);font-weight:inherit}
 .time-block.optional{
   background:var(--cream-soft);
   border-color:var(--terracotta);
@@ -3348,31 +3440,31 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         </figcaption>
       </figure>
       <figure class="wa-card" data-rot="-1.5">
+        <img src="assets/testimonials/t8.jpg" alt="המלצה מסאפיה" loading="lazy" />
+        <figcaption>
+          <b data-i18n="tt.p8.name">סאפיה</b>
+          <span data-i18n="tt.p8.rel">אמא של שילה · קבוצת הקטנים</span>
+        </figcaption>
+      </figure>
+      <figure class="wa-card" data-rot="1">
         <img src="assets/testimonials/t7.jpg" alt="המלצה מרעיה" loading="lazy" />
         <figcaption>
           <b data-i18n="tt.p7.name">רעיה</b>
           <span data-i18n="tt.p7.rel">אמא של אלה · קבוצת הגדולים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="1">
+      <figure class="wa-card" data-rot="-2.5">
         <img src="assets/testimonials/t4.jpg" alt="המלצה מיערה" loading="lazy" />
         <figcaption>
           <b data-i18n="tt.p4.name">יערה</b>
           <span data-i18n="tt.p4.rel">אמא של לילי · קבוצת הגדולים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="-2.5">
+      <figure class="wa-card" data-rot="1.8">
         <img src="assets/testimonials/t1.jpg" alt="המלצה מאלדד" loading="lazy" />
         <figcaption>
           <b data-i18n="tt.p1.name">אלדד</b>
           <span data-i18n="tt.p1.rel">אבא של נרי · קבוצת הקטנים</span>
-        </figcaption>
-      </figure>
-      <figure class="wa-card" data-rot="1.8">
-        <img alt="" />
-        <figcaption>
-          <b data-placeholder>[שם הורה 8]</b>
-          <span data-placeholder>[אמא/אבא של ...]</span>
         </figcaption>
       </figure>
     </div>
@@ -3460,8 +3552,9 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <h2 data-i18n="sched.title">יום הסאנדי סקול</h2>
       <div class="time-blocks single">
         <div class="time-block">
-          <span class="hours">10:00 - 13:40</span>
-          <span class="label" data-i18n="sched.block1">4 שעות אקדמיות · סאנדי סקול</span>
+          <span class="hours" dir="ltr">10:00 - 13:40</span>
+          <span class="hours-opt" dir="ltr">+ 13:40 - 15:30</span>
+          <span class="label" data-i18n="sched.block1" data-html="true">4<span class="label-opt">/6</span> שעות אקדמיות · סאנדי סקול</span>
         </div>
       </div>
     </div>
@@ -3485,7 +3578,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         <div class="tl-dot">2h</div>
         <div class="tl-body">
           <h3 data-i18n="sched.s1.title">חינוך לשוני, תרבות ומורשת ישראל</h3>
-          <p class="who-teaches" data-i18n="sched.s1.who">מועבר על ידי נופר גרגרוד</p>
+          <p class="who-teaches" data-i18n="sched.s1.who">מועבר על ידי המנהלת נופר גרגרוד</p>
           <p data-i18n="sched.s1.desc">כל קבוצה לומדת את החלק הזה בשעות שונות בתוך היום, בסבב מול החלק השני. אוצר מילים, קריאה והבנת הנקרא, כתיבה יצירתית, חגים ומועדים, סיפורי מקום ודמויות מהתרבות הישראלית.</p>
         </div>
       </article>
@@ -3494,8 +3587,20 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         <div class="tl-dot">2h</div>
         <div class="tl-body">
           <h3 data-i18n="sched.s2.title">תנ"ך והוראת המקרא</h3>
-          <p class="who-teaches" data-i18n="sched.s2.who">מועבר על ידי איתי זיו</p>
+          <p class="who-teaches" data-i18n="sched.s2.who">מועבר על ידי המורה איתי זיו</p>
           <p data-i18n="sched.s2.desc">כל קבוצה לומדת את החלק הזה בשעות משלימות לחלק הראשון. סיפורי המקרא בגישה נגישה ומעוררת חשיבה, חיבור בין הטקסט לחיים של היום.</p>
+        </div>
+      </article>
+
+      <article class="tl-item afternoon">
+        <div class="tl-dot">2h</div>
+        <div class="tl-body">
+          <h3>
+            <span data-i18n="sched.s3.title">Sunday Club</span>
+            <span class="tl-opt-tag" data-i18n="sched.s3.opt">אופציונלי</span>
+          </h3>
+          <p class="who-teaches" data-i18n="sched.s3.who">מועבר על ידי המורה אורלי כהן</p>
+          <p data-i18n="sched.s3.desc">אחר הצהריים שבו עברית נכנסת באופן טבעי - דרך משחקים, סרטים, יצירה ופעילויות קבוצתיות. החלק הרגוע של היום, שבו הילדים מתחברים לשפה ואחד לשני. אורלי מובילה את האחר צהריים בקשר אישי עם כל ילד/ה, ובאמונה שלמידה חווייתית מחברת בין ידע, חוויה והנאה.</p>
         </div>
       </article>
     </div>
@@ -3519,13 +3624,13 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         <span data-i18n="after.optpill">תוספת הרשמה אופציונלית · למי שרוצה להוסיף ליום הסאנדי</span>
       </span>
       <span class="num-marker afternoon-mark">ג+</span>
-      <span class="eyebrow afternoon-eyebrow" data-i18n="after.eyebrow">בינה מלאכותית לילדים</span>
-      <h2 data-i18n="after.title">צהרון סאנדי סקול</h2>
-      <p data-i18n="after.sub" data-html="true"><strong>לבחירתכם</strong> - הילדים הרשומים לסאנדי סקול מוזמנים להוסיף שעתיים אקדמיות נוספות של צהרון בינה מלאכותית לילדים. הרישום מתבצע יחד עם הרשמת הסאנדי סקול.</p>
+      <span class="eyebrow afternoon-eyebrow" data-i18n="after.eyebrow">Sunday Club</span>
+      <h2 data-i18n="after.title">אחר הצהריים שבו לומדים עברית בלי להרגיש שלומדים</h2>
+      <p data-i18n="after.sub" data-html="true"><strong>לבחירתכם</strong> - הילדים הרשומים לסאנדי סקול מוזמנים להוסיף שעתיים נוספות של Sunday Club. הרישום מתבצע יחד עם הרשמת הסאנדי סקול.</p>
       <div class="time-blocks single">
         <div class="time-block optional">
           <span class="hours">13:40 - 15:30</span>
-          <span class="label" data-i18n="sched.block2">צהרון סאנדי סקול · שעתיים אקדמיות נוספות (אופציונלי)</span>
+          <span class="label" data-i18n="sched.block2">Sunday Club · שעתיים נוספות (אופציונלי)</span>
         </div>
       </div>
     </div>
@@ -3538,15 +3643,10 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
             <span><span class="time-num" dir="ltr">13:40 - 15:30</span> <span data-i18n="after.timetag">· שעתיים אקדמיות</span></span>
           </div>
 
-          <h3 data-i18n="after.h3">צהרון סאנדי סקול · בינה מלאכותית לילדים</h3>
-          <p class="who-teaches" data-i18n="after.who">מועבר על ידי דביר ביטון</p>
-          <p class="afternoon-desc" data-placeholder data-i18n="after.desc">[תיאור הצהרון - לעדכון. היכרות חווייתית עם כלי AI מותאמי גיל, חשיבה ביקורתית ויצירת תוצרים.]</p>
+          <h3 data-i18n="after.h3">Sunday Club</h3>
+          <p class="afternoon-desc" data-i18n="after.desc"></p>
 
           <div class="afternoon-notes">
-            <span class="note">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-              <span data-i18n="after.note1">נדרש טאבלט</span>
-            </span>
             <span class="note">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2"/><path d="M3 21v-1a6 6 0 0 1 12 0v1M15 21v-1a4 4 0 0 1 6-3"/></svg>
               <span data-i18n="after.note2">ייפתח בכפוף למספר נרשמים</span>
@@ -3556,7 +3656,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
 
         <div class="afternoon-visual">
           <div class="ai-orb">
-            <span class="orb-letter">AI</span>
+            <span class="orb-letter">ע</span>
             <span class="orb-ring r1"></span>
             <span class="orb-ring r2"></span>
             <span class="orb-ring r3"></span>
@@ -3587,7 +3687,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       </div>
       <div class="daycal-body">
         <b data-i18n="sched.daycal.title">מתי מתקיים הסאנדי</b>
-        <p data-i18n="sched.daycal.body">לוח ימי הסאנדי תואם את לוח הלימודים של בית הספר מארק שאגאל. בימים שבהם מתקיים לימודי EDD - מתקיים גם לימודי הסאנדי; בימי חופש שאין בהם EDD - אין סאנדי. הסאנדי משתלב באופן טבעי בלוח השנה המוכר לכם.</p>
+        <p data-i18n="sched.daycal.body">לוח ימי הסאנדי תואם את לוח הלימודים של בית הספר מארק שאגאל. בימים שבהם מתקיים EDD - מתקיים גם הסאנדי; בימי חופש ללא EDD - אין סאנדי. הסאנדי משתלב באופן טבעי בלוח השנה המוכר לכם.</p>
+        <p class="daycal-disclaimer" data-i18n="sched.daycal.disclaimer" data-html="true"></p>
+        <a class="daycal-link" href="https://canva.link/cwqk7lxke8cb5by" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg>
+          <span data-i18n="sched.daycal.cta">מצורף הלו״ז המלא</span>
+        </a>
       </div>
     </aside>
 
@@ -3612,7 +3717,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         <div class="ds-totals">
           <div class="ds-total">
             <span class="ds-h">2</span>
-            <span class="ds-l"><span data-i18n="sched.day.tot1">עברית, חינוך לשוני ותרבות</span><small data-i18n="sched.day.unit">שעות אקדמיות</small></span>
+            <span class="ds-l"><span data-i18n="sched.day.tot1">עברית, חינוך לשוני ומורשת ישראלית</span><small data-i18n="sched.day.unit">שעות אקדמיות</small></span>
           </div>
           <div class="ds-total">
             <span class="ds-h">2</span>
@@ -3620,7 +3725,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           </div>
           <div class="ds-total is-opt">
             <span class="ds-h">2</span>
-            <span class="ds-l"><span data-i18n="sched.day.tot3">בינה מלאכותית לילדים</span><small data-i18n="sched.day.optunit">לבחירה · אופציונלי</small></span>
+            <span class="ds-l"><span data-i18n="sched.day.tot3">Sunday Club</span><small data-i18n="sched.day.optunit">לבחירה · אופציונלי</small></span>
           </div>
         </div>
       </div>
@@ -3633,9 +3738,10 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
         <div class="ds-row is-break"><span class="ds-time" dir="ltr">12:55 - 13:00</span><span class="ds-act" data-i18n="sched.day.break">הפסקה</span></div>
         <div class="ds-row"><span class="ds-time" dir="ltr">13:00 - 13:40</span><span class="ds-act" data-i18n="sched.day.bible">תנ״ך והוראת המקרא</span></div>
 
-        <div class="daysched-optdivider"><span data-i18n="sched.day.optlabel">צהרון · תוספת אופציונלית</span></div>
+        <div class="daysched-optdivider"><span data-i18n="sched.day.optlabel">Sunday Club · תוספת אופציונלית</span></div>
         <div class="ds-row is-break"><span class="ds-time" dir="ltr">13:40 - 14:00</span><span class="ds-act" data-i18n="sched.day.break">הפסקה</span></div>
-        <div class="ds-row is-optional"><span class="ds-time" dir="ltr">14:00 - 15:30</span><span class="ds-act" data-i18n="sched.day.ai">שיעור כפול · בינה מלאכותית לילדים</span></div>
+        <div class="ds-row is-optional"><span class="ds-time" dir="ltr">14:00 - 14:45</span><span class="ds-act" data-i18n="sched.day.ai">Hebrew Sunday Club</span></div>
+        <div class="ds-row is-optional"><span class="ds-time" dir="ltr">14:45 - 15:30</span><span class="ds-act" data-i18n="sched.day.ai">Hebrew Sunday Club</span></div>
       </div>
     </div>
   </div>
@@ -3678,17 +3784,18 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       </article>
 
       <article class="staff-card">
-        <div class="staff-photo" data-bg="3">[תמונה של דביר]</div>
+        <div class="staff-photo has-photo" data-bg="3"><img src="assets/staff/orly.jpg" alt="אורלי כהן" /></div>
         <div class="staff-body">
-          <span class="role" data-i18n="staff.dvir.role">מורה צהרון סאנדי סקול</span>
-          <h3 data-i18n="staff.dvir.name">דביר ביטון</h3>
-          <span class="subject" data-i18n="staff.dvir.subject">בינה מלאכותית לילדים</span>
+          <span class="role" data-i18n="staff.orly.role">מחנכת ומורה</span>
+          <h3 data-i18n="staff.orly.name">אורלי כהן</h3>
+          <span class="subject" data-i18n="staff.orly.subject">Sunday Club · למידה חווייתית בעברית</span>
           <div class="bio-block">
-            <h4 class="bio-heading" data-i18n="staff.dvir.toggle">על דביר, מורה צהרון הסאנדי סקול</h4>
-            <div class="bio-content placeholder" data-i18n="staff.dvir.bio" data-html="true">[רקע קצר על דביר - יוזרק בשלב הקוד]</div>
+            <h4 class="bio-heading" data-i18n="staff.orly.toggle">על אורלי, מורת הסאנדי קלאב</h4>
+            <div class="bio-content" data-i18n="staff.orly.bio" data-html="true"></div>
           </div>
         </div>
       </article>
+
     </div>
   </div>
 </section>
@@ -3719,6 +3826,35 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   </div>
 </section>
 
+<!-- ─────────────── 4.8. ציוד / מה להביא ─────────────── -->
+<section class="bring-sec reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2 data-i18n="bring.title">מה להביא</h2>
+    </div>
+    <div class="bring-grid">
+      <article class="bring-card">
+        <div class="bring-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12a1 1 0 0 1 1 1v17l-3-2-2 2-2-2-2 2-2-2-3 2V4a1 1 0 0 1 1-1z"/><path d="M9 8h6M9 12h6"/></svg>
+        </div>
+        <p data-i18n="bring.item1">2 מחברות עברית גדולות (A4), שורה רחבה</p>
+      </article>
+      <article class="bring-card">
+        <div class="bring-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9h18l-1 11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1L3 9z"/><path d="M8 9V6a4 4 0 0 1 8 0v3"/><circle cx="12" cy="14" r="1.5" fill="currentColor"/></svg>
+        </div>
+        <p data-i18n="bring.item2">כלי כתיבה: עפרונות, עטים, צבעי עיפרון, דבק, מספריים</p>
+      </article>
+      <article class="bring-card">
+        <div class="bring-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v3h6V3M10 6h4l1 4H9l1-4z"/><path d="M8 10h8l-1 10a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1L8 10z"/></svg>
+        </div>
+        <p data-i18n="bring.item3">אוכל לכל היום + בקבוק מים</p>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- ─────────────── 5. REGISTRATION - טופס יחיד: חוזה + תשלום ─────────────── -->
 <section class="registration reveal">
   <div class="container">
@@ -3727,7 +3863,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <span class="badge"><span class="live-dot"></span><span data-i18n="reg.liveBadge">השלב הפעיל מתעדכן אוטומטית לפי התאריך</span></span>
       <span class="eyebrow" style="margin-block-start:6px" data-i18n="reg.eyebrow">הרשמה לשנת הלימודים הקרובה</span>
       <h2 data-i18n="reg.title">הרשמה</h2>
-      <p data-i18n="reg.sub">ההרשמה מתבצעת דרך בחירת התוכנית באתר. המקדמה משלמת עם ההרשמה, שומרת את המקום בתוכנית ומהווה את התשלום הראשון - עבור חודש ספטמבר. החיוב הבא יתבצע ב-1 באוקטובר. כל ההרשמות בכפוף לזמינות מקומות בכיתות.</p>
+      <p data-i18n="reg.sub">ההרשמה מתבצעת דרך בחירת התוכנית באתר. המקדמה המשולמת עם ההרשמה שומרת את המקום בתוכנית ומהווה את התשלום הראשון - עבור חודש ספטמבר. החיוב הבא יתבצע ב-1 באוקטובר. כל ההרשמות בכפוף לזמינות מקומות בכיתות.</p>
     </div>
 
     <!-- ההרשמה כוללת הכל - מה כלול בדמי הלימוד -->
@@ -3784,18 +3920,25 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           <span class="step-num">1</span>
           <div class="step-body">
             <b data-i18n="reg.step1.title">בוחרים תוכנית</b>
-            <p data-i18n="reg.step1.body" data-html="true">לחיצה על הכפתור מעבירה אתכם לאתר ההרשמה, שם בוחרים את התוכנית המתאימה - <strong>עם צהרון</strong> או <strong>בלי צהרון</strong>. המקדמה שומרת את המקום ומהווה את התשלום הראשון, עבור חודש ספטמבר.</p>
+            <p data-i18n="reg.step1.body" data-html="true">לחיצה על הכפתור מעבירה אתכם לאתר ההרשמה, שם בוחרים את התוכנית המתאימה - <strong>עם Sunday Club</strong> או <strong>בלי Sunday Club</strong>. המקדמה שומרת את המקום ומהווה את התשלום הראשון, עבור חודש ספטמבר.</p>
           </div>
         </li>
         <li>
           <span class="step-num">2</span>
+          <div class="step-body">
+            <b data-i18n="reg.steppay.title">תשלום חודשי קבוע</b>
+            <p data-i18n="reg.steppay.body" data-html="true">התשלום מחושב לפי <strong>36 ימי Sunday School</strong> מלאים, ונפרס ל-<strong>10 חודשי תשלום</strong> לפי המסלול שבחרתם.</p>
+          </div>
+        </li>
+        <li>
+          <span class="step-num">3</span>
           <div class="step-body">
             <b data-i18n="reg.step2.title">כל תוכנית = ילד אחד</b>
             <p data-i18n="reg.step2.body" data-html="true">כל תוכנית מיועדת ל<strong>ילד אחד</strong>. להרשמת אחים, חוזרים על אותה הרשמה קצרה לכל ילד.</p>
           </div>
         </li>
         <li class="highlight">
-          <span class="step-num">3</span>
+          <span class="step-num">4</span>
           <div class="step-body">
             <b data-i18n="reg.step3.title">הנחת אחים · 15% אוטומטית</b>
             <p data-i18n="reg.step3.body" data-html="true">מהילד השני ומעלה, הנחת האחים בגובה <strong>15%</strong> מתעדכנת אוטומטית. המערכת מזהה את האחים בעצמה.</p>
@@ -3860,7 +4003,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <span><b data-i18n="brand.name">בית הספר ליום ראשון</b> · <span class="fr-line">Nofar's Hebrew Sunday School</span></span>
     </div>
     <div>
-      © ממטק 2026
+      © ממטק 2023
     </div>
   </div>
 </footer>
@@ -3882,12 +4025,12 @@ const CONFIG = {
 
   // מחירים לשעה אקדמית
   prices: {
-    early:   "78",
-    regular: "87.5",
-    late:    "95",
+    early:   "88.5",
+    regular: "98",
+    late:    "112.5",
   },
   currency: "₪",
-  priceUnit: { he: "לשעה אקדמית", fr: "par heure de cours" },
+  priceUnit: { he: "לשעה אקדמית · כולל מע״מ", fr: "par heure de cours · TVA incluse" },
 
   // אחוז הנחת אחים (מהילד השני ואילך)
   siblingDiscountPct: "15",
@@ -3930,6 +4073,7 @@ const I18N = {
     "tt.p5.name":"לילך","tt.p5.rel":"סבתא של מאיה (הגדולים), ינאי ואביב (הקטנים)",
     "tt.p6.name":"נטלי","tt.p6.rel":"אמא של אמיליה (הגדולים) וסופיה (הקטנים)",
     "tt.p7.name":"רעיה","tt.p7.rel":"אמא של אלה · קבוצת הגדולים",
+    "tt.p8.name":"סאפיה","tt.p8.rel":"אמא של שילה · קבוצת הקטנים",
 
     "about.eyebrow":"על הסאנדי",
     "about.title":"בית בעברית. גשר בין שני העולמות.",
@@ -3943,25 +4087,26 @@ const I18N = {
     "sched.eyebrow":"לוח הזמנים",
     "sched.title":"יום הסאנדי סקול",
     "sched.sub":"",
-    "sched.block1":"4 שעות אקדמיות · סאנדי סקול",
-    "sched.block2":"צהרון סאנדי סקול · שעתיים אקדמיות נוספות (אופציונלי)",
+    "sched.block1":"4<span class=\"label-opt\">/6</span> שעות אקדמיות · סאנדי סקול",
+    "sched.block2":"Sunday Club · שעתיים נוספות (אופציונלי)",
     "sched.endcap":"סיום היום · 13:40",
     "sched.hebnote":"בכל שיעורי הסאנדי סקול ניתן דגש על פיתוח מיומנויות לשוניות וחיזוק השפה העברית.",
     "sched.day.title":"כך נראה יום בסאנדי סקול",
     "sched.day.note":"הלו״ז טנטטיבי - כל קבוצה עוברת את 4 השעות הראשונות בסדר שונה. בסך הכל כל תלמיד/ה מקבל/ת:",
-    "sched.day.tot1":"עברית, חינוך לשוני ותרבות",
+    "sched.day.tot1":"עברית, חינוך לשוני ומורשת ישראלית",
     "sched.day.tot2":"תנ״ך והוראת המקרא",
-    "sched.day.tot3":"בינה מלאכותית לילדים",
+    "sched.day.tot3":"Sunday Club",
     "sched.day.unit":"שעות אקדמיות",
     "sched.day.optunit":"לבחירה · אופציונלי",
     "sched.day.lesson1":"חינוך לשוני + מורשת ותרבות",
     "sched.day.break":"הפסקה",
     "sched.day.bible":"תנ״ך והוראת המקרא",
-    "sched.day.optlabel":"צהרון · תוספת אופציונלית",
-    "sched.day.ai":"שיעור כפול · בינה מלאכותית לילדים",
+    "sched.day.optlabel":"Sunday Club · תוספת אופציונלית",
+    "sched.day.ai":"Hebrew Sunday Club",
     "sched.daycal.title":"מתי מתקיים הסאנדי",
-    "sched.daycal.body":"לוח ימי הסאנדי תואם את לוח הלימודים של בית הספר מארק שאגאל. בימים שבהם מתקיים לימודי EDD - מתקיים גם לימודי הסאנדי; בימי חופש שאין בהם EDD - אין סאנדי. הסאנדי משתלב באופן טבעי בלוח השנה המוכר לכם.",
-    "sched.daycal.cta":"לחצו לפתיחת הלו״ז המלא שלנו",
+    "sched.daycal.body":"לוח ימי הסאנדי תואם את לוח הלימודים של בית הספר מארק שאגאל. בימים שבהם מתקיים EDD - מתקיים גם הסאנדי; בימי חופש ללא EDD - אין סאנדי. הסאנדי משתלב באופן טבעי בלוח השנה המוכר לכם.",
+    "sched.daycal.disclaimer":"<strong>הבהרה:</strong> לוח ה-EDD הסופי של מארק שאגאל עדיין לא פורסם. נכון לעכשיו, צפויים להתקיים השנה <strong>36 מפגשי EDD</strong>, ובהתאם בנוי גם הלו״ז שלנו. אם בסופו של דבר ייקבעו במארק שאגאל פחות מפגשי EDD - השיעורים החסרים יבוטלו גם אצלנו, <strong>והעלות הכספית של המפגשים שבוטלו תוחזר אליכם</strong>. כל זאת כדי שלוח השיעורים שלנו יישאר מותאם במדויק ללו״ז המוכר לכם ממארק שאגאל.",
+    "sched.daycal.cta":"מצורף הלו״ז המלא",
     "sched.loc.title":"איפה מתקיים",
     "sched.loc.body":"מתנ״ס נווה צדק · נווה שלום 9, תל אביב",
     "sched.loc.cta":"פתחו את המיקום ב-Google Maps",
@@ -3970,24 +4115,26 @@ const I18N = {
     "sched.groups.body":"מתנהל ב-2 קבוצות לפי גיל ורמה בעברית, כל ילד/ה משובץ/ת לקבוצה המתאימה.",
     "sched.s1.meta":"חלק ראשון · שעתיים",
     "sched.s1.title":"חינוך לשוני, תרבות ומורשת ישראל",
-    "sched.s1.who":"מועבר על ידי נופר גרגרוד",
-    "sched.s1.desc":"משלב חיזוק עברית והעשרה תרבותית: הרחבת אוצר מילים, קריאה והבנת הנקרא, וכתיבה יצירתית, לצד היכרות עם חגים ומועדים, סיפורי מקום ודמויות מהתרבות הישראלית. הלמידה רב-ערוצית, חווייתית ומשלבת טכנולוגיה, ומבוססת על עקרונות נוירו-פדגוגיים.",
+    "sched.s1.who":"מועבר על ידי המנהלת נופר גרגרוד",
+    "sched.s1.desc":"משלב חיזוק עברית והעשרה תרבותית: הרחבת אוצר מילים, קריאה והבנת הנקרא, וכתיבה יצירתית, לצד היכרות עם חגים ומועדים, סיפורי מקום ודמויות מהתרבות והמורשת הישראלית. הלמידה רב-ערוצית, חווייתית ומשלבת טכנולוגיה, מבוססת על עקרונות נוירו-פדגוגיים ועל הוראה פעילה שמגייסת את התלמידים.",
     "sched.s2.meta":"חלק שני · שעתיים",
     "sched.s2.title":"תנ\"ך והוראת המקרא",
-    "sched.s2.who":"מועבר על ידי איתי זיו",
-    "sched.s2.desc":"סיפורי המקרא נלמדים בגישה נגישה ומעוררת חשיבה, שמזמינה את התלמידים לשאול, לחקור ולגלות. הדגש הוא על חיבור בין הטקסט לחיים של היום - דרך דיון, למידת עמיתים ויצירה.",
+    "sched.s2.who":"מועבר על ידי המורה איתי זיו",
+    "sched.s2.desc":"סיפורי המקרא נלמדים בגישה נגישה ומעוררת חשיבה, שמזמינה את התלמידים לשאול, לחקור ולגלות. הדגש הוא על חיבור בין הטקסט לחיים של היום - דרך דיון, למידת עמיתים ויצירה. איתי מחבר את הסיפורים לערכים שמלווים כל תלמיד/ה - כמו לא לוותר גם כשמאתגר, חברות אמיתית או אחריות כלפי האחר - וכך הלמידה נוגעת לחייהם גם מחוץ לכיתה.",
+    "sched.s3.title":"Sunday Club",
+    "sched.s3.opt":"אופציונלי",
+    "sched.s3.who":"מועבר על ידי המורה אורלי כהן",
+    "sched.s3.desc":"אחר הצהריים שבו עברית נכנסת באופן טבעי - דרך משחקים, סרטים, יצירה ופעילויות קבוצתיות. החלק הרגוע של היום, שבו הילדים מתחברים לשפה ואחד לשני. אורלי מובילה את האחר צהריים בקשר אישי עם כל ילד/ה, ובאמונה שלמידה חווייתית מחברת בין ידע, חוויה והנאה.",
 
-    "after.eyebrow":"בינה מלאכותית לילדים",
-    "after.optpill":"תוספת הרשמה אופציונלית · למי שרוצה להוסיף ליום הסאנדי",
-    "after.title":"צהרון סאנדי סקול",
-    "after.sub":"<strong>לבחירתכם</strong> - הילדים הרשומים לסאנדי סקול מוזמנים להוסיף שעתיים אקדמיות נוספות של צהרון בינה מלאכותית לילדים. הרישום מתבצע יחד עם הרשמת הסאנדי סקול.",
+    "after.eyebrow":"Sunday Club",
+    "after.optpill":"תוספת אופציונלית · להוספה ליום הסאנדי",
+    "after.title":"אחר הצהריים שבו לומדים עברית בלי להרגיש שלומדים",
+    "after.sub":"<strong>לבחירתכם</strong> - הילדים הרשומים לסאנדי סקול מוזמנים להוסיף שעתיים נוספות של Sunday Club. הרישום מתבצע יחד עם הרשמת הסאנדי סקול.",
     "after.timetag":"· שעתיים אקדמיות",
-    "after.h3":"צהרון סאנדי סקול · בינה מלאכותית לילדים",
-    "after.who":"מועבר על ידי דביר ביטון",
-    "after.desc":"[תיאור הצהרון - לעדכון. היכרות חווייתית עם כלי AI מותאמי גיל, חשיבה ביקורתית ויצירת תוצרים.]",
-    "after.note1":"נדרש טאבלט",
+    "after.h3":"Sunday Club",
+    "after.desc":"ב-Sunday Club כל שבוע מחכה חוויה אחרת: משחקים שמפתחים חשיבה ושפה, סרטים בעברית, יצירה ופעילויות קבוצתיות. המשותף לכולן אחד - עברית שנכנסת בטבעיות, דרך הנאה, שיתוף וצחוק. זה החלק הרגוע של היום, שבו הילדים מתחברים לשפה ואחד לשני.",
     "after.note2":"ייפתח בכפוף למספר נרשמים",
-    "after.endcap":"סיום היום עם צהרון · 15:30",
+    "after.endcap":"סיום היום עם Sunday Club · 15:30",
 
     "staff.eyebrow":"הצוות",
     "staff.title":"שלושה מורים שעושים את זה כי הם אוהבים את זה.",
@@ -4001,25 +4148,30 @@ const I18N = {
     "staff.itay.subject":"תנ\"ך והוראת המקרא",
     "staff.itay.toggle":"על איתי, מורה הסאנדי סקול",
     "staff.itay.bio":"<p>מורה מקצועי, בעל תואר בחינוך ולימודים מתקדמים בהוראת המקרא והתנ\"ך. ניסיון של מעל שמונה שנים בהוראת תנ\"ך ומוסיקה, וממשיך השנה לשנתו השנייה בסאנדי סקול.</p><p>משנת ההוראה שלו נשענת על גישה סקרנית-חוקרת: התלמיד אינו מקבל את סיפורי המקרא כידע מוגמר, אלא חוקר אותם בעצמו. תפקיד המורה הוא להנחות, להבין את הילד ולעורר בו עניין - מתוך אמונה שהסקרנות היא שמובילה ללמידה אמיתית.</p><p>איתי דוגל בלמידת עמיתים, שבה תלמידים מלמדים זה את זה בשפה שלהם - וכך החומר נשאר בהם. מקפיד שהלימוד יהיה רלוונטי לעולמם, ומשלב נגיעות מעולם האומנויות והמשחקים כדי לחבר את סיפורי המקרא אל התלמידים בדרך יצירתית וייחודית.</p>",
-    "staff.dvir.role":"מורה צהרון סאנדי סקול",
-    "staff.dvir.name":"דביר ביטון",
-    "staff.dvir.subject":"בינה מלאכותית לילדים",
-    "staff.dvir.toggle":"על דביר, מורה צהרון הסאנדי סקול",
-    "staff.dvir.bio":"[רקע קצר על דביר - יוזרק בשלב הקוד]",
+    "staff.orly.role":"מחנכת ומורה",
+    "staff.orly.name":"אורלי כהן",
+    "staff.orly.subject":"Sunday Club · למידה חווייתית בעברית",
+    "staff.orly.toggle":"על אורלי, מורת הסאנדי קלאב",
+    "staff.orly.bio":"<p>מורה מקצועית ומחנכת כיתה. מאמינה שהקשר האישי והמשמעותי עם כל תלמיד הוא הבסיס לכל למידה, ורואה בכל ילד וילדה עולם שלם של יכולות, חוזקות וצרכים. מתאימה את ההוראה לעולם התוכן ולתחומי העניין של הילדים, כדי שהלמידה תיגע בהם באמת.</p><p>משנת ההוראה שלה נשענת על למידה חווייתית, פעילה ומהנה, שמחברת בין ידע, חוויה והנאה. היא מעודדת סקרנות, יצירתיות וחשיבה עצמאית, ומשלבת טכנולוגיה ומדיה ככלי לקידום למידה משמעותית.</p><p>בלב העבודה שלה עומדת תחושת המסוגלות של התלמיד. תפקיד המורה, לתפיסתה, הוא לזהות את החוזקות הייחודיות של כל תלמיד ותלמידה, לטפח ביטחון עצמי ותחושת הצלחה, ולהעניק כלים להתמודדות עם אתגרים לימודיים, רגשיים וחברתיים.</p>",
 
     "reg.liveBadge":"השלב הפעיל מתעדכן אוטומטית לפי התאריך",
     "reg.eyebrow":"הרשמה לשנת הלימודים הקרובה",
     "reg.title":"הרשמה",
-    "reg.sub":"ההרשמה מתבצעת דרך בחירת התוכנית באתר. המקדמה משלמת עם ההרשמה, שומרת את המקום בתוכנית ומהווה את התשלום הראשון - עבור חודש ספטמבר. החיוב הבא יתבצע ב-1 באוקטובר. כל ההרשמות בכפוף לזמינות מקומות בכיתות.",
+    "reg.sub":"ההרשמה מתבצעת דרך בחירת התוכנית באתר. המקדמה המשולמת עם ההרשמה שומרת את המקום בתוכנית ומהווה את התשלום הראשון - עבור חודש ספטמבר. החיוב הבא יתבצע ב-1 באוקטובר. כל ההרשמות בכפוף לזמינות מקומות בכיתות.",
     "reg.notetitle":"משלמים רק על שעות אקדמיות - ההפסקות עלינו",
     "reg.notebody":"המחיר מחושב לפי שעה אקדמית שלומדים בפועל. <em>זמן ההפסקות - לא מחוייב.</em>",
     "reg.inc.title":"ההרשמה כוללת הכל",
     "reg.inc.intro":"דמי הלימוד כוללים את כל מה שהילד צריך לשנה שלמה:",
     "reg.inc.1":"ספרי לימוד מותאמים לכל קבוצת גיל",
     "reg.inc.2":"מערכת דיגיטלית להעברת שיעורי בית והגשתם",
-    "reg.inc.3":"מערכת טכנולוגית לעיצוב התנהגות בכיתה",
-    "reg.inc.4":"כלים טכנולוגיים להוראה פרו-אקטיבית וחווייתית",
+    "reg.inc.3":"אפליקציה לניהול השיעורים ולדיווח להורים, לעיצוב התנהגות בכיתה",
+    "reg.inc.4":"כלי לימוד, פיתוחים טכנולוגיים מותאמים, משחקים פיזיים וכלי עזר להוראה פרו-אקטיבית וחווייתית",
     "reg.inc.5":"מורים מקצועיים מהשורה הראשונה, שרואים בהוראה שליחות",
+
+    "bring.title":"מה להביא",
+    "bring.item1":"2 מחברות עברית גדולות (A4), שורה רחבה",
+    "bring.item2":"כלי כתיבה: עפרונות, עטים, צבעי עיפרון, דבק, מספריים",
+    "bring.item3":"אוכל לכל היום + בקבוק מים",
 
     "sib.eyebrow":"הנחת אחים",
     "sib.title":"הנחת אחים",
@@ -4035,7 +4187,9 @@ const I18N = {
     "reg.form.title":"נהלים והרשמה",
     "reg.form.body":"",
     "reg.step1.title":"בוחרים תוכנית",
-    "reg.step1.body":"לחיצה על הכפתור מעבירה אתכם לאתר ההרשמה, שם בוחרים את התוכנית המתאימה - <strong>עם צהרון</strong> או <strong>בלי צהרון</strong>. המקדמה שומרת את המקום ומהווה את התשלום הראשון, עבור חודש ספטמבר.",
+    "reg.step1.body":"לחיצה על הכפתור מעבירה אתכם לאתר ההרשמה, שם בוחרים את התוכנית המתאימה - <strong>עם Sunday Club</strong> או <strong>בלי Sunday Club</strong>. המקדמה שומרת את המקום ומהווה את התשלום הראשון, עבור חודש ספטמבר.",
+    "reg.steppay.title":"תשלום חודשי קבוע",
+    "reg.steppay.body":"התשלום מחושב לפי <strong>36 ימי Sunday School</strong> מלאים, ונפרס ל-<strong>10 חודשי תשלום</strong> לפי המסלול שבחרתם.",
     "reg.step2.title":"כל תוכנית = ילד אחד",
     "reg.step2.body":"כל תוכנית מיועדת ל<strong>ילד אחד</strong>. להרשמת אחים, חוזרים על אותה הרשמה קצרה לכל ילד.",
     "reg.step3.title":"הנחת אחים · 15% אוטומטית",
@@ -4067,7 +4221,7 @@ const I18N = {
     "tier.cta.future":"שמרו מקום מראש",
     "tier.priceTBD":"[מחיר יוזרק]",
     "tier.feat.early.1":"המחיר הנמוך ביותר · חיסכון משמעותי",
-    "tier.feat.early.2":"מקום מובטח בכיתה ובצהרון",
+    "tier.feat.early.2":"מקום מובטח בכיתה וב-Sunday Club",
     "tier.feat.early.3":"",
     "tier.feat.regular.1":"תקופת ההרשמה המרכזית",
     "tier.feat.regular.2":"",
@@ -4078,13 +4232,13 @@ const I18N = {
   },
 
   fr: {
-    "brand.name":"L'École du dimanche",
-    "brand.by":"by Nofar · HEBREW SUNDAY SCHOOL",
+    "brand.name":"Hebrew Sunday School",
+    "brand.by":"by Nofar · L'École du dimanche",
     "cta.register":"S'inscrire",
 
     "hero.lede":"Cliquez pour découvrir",
     "hero.title":"<span class=\"hero-title-fr\" dir=\"ltr\"><span class=\"bw-row\"><span class=\"bw-orn\" aria-hidden=\"true\">✦</span><span class=\"bw-w\">Bienvenue<svg class=\"bw-swash\" viewBox=\"0 0 240 24\" preserveAspectRatio=\"none\" aria-hidden=\"true\"><path pathLength=\"1\" d=\"M5 16 C 50 3, 100 22, 145 12 S 220 8, 235 18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"3.5\" stroke-linecap=\"round\" /></svg></span></span><span class=\"bw-rest\">dans notre <em class=\"bw-ecole\">école</em></span></span>",
-    "hero.sub":"L'École du dimanche de Nofar · du CE1 à la 6e · hébreu, Tanakh, patrimoine et culture d'Israël : un enseignement porteur de sens, fondé sur une approche expérientielle, dans une ambiance familiale.",
+    "hero.sub":"La Hebrew Sunday School de Nofar · du CE1 à la 6e · hébreu, Tanakh, patrimoine et culture d'Israël : un enseignement porteur de sens, fondé sur une approche expérientielle, dans une ambiance familiale.",
     "hero.tag1":"Le dimanche · 4 à 6 heures de cours",
     "hero.tag2":"CE1 → 6e",
     "hero.tag3":"Communauté familiale",
@@ -4103,38 +4257,40 @@ const I18N = {
     "tt.p5.name":"Lilach","tt.p5.rel":"Grand-mère de Maya (grands), Yanaï et Aviv (petits)",
     "tt.p6.name":"Natalie","tt.p6.rel":"Maman d'Emilia (grands) et Sofia (petits)",
     "tt.p7.name":"Raaya","tt.p7.rel":"Maman d'Ella · groupe des grands",
+    "tt.p8.name":"Safiya","tt.p8.rel":"Maman de Shila · groupe des petits",
 
     "about.eyebrow":"À propos",
     "about.title":"Une maison en hébreu. Un pont entre deux mondes.",
-    "about.lead":"L'École du dimanche de Nofar s'adresse aux enfants bilingues qui vivent en Israël mais sont scolarisés dans une école de langue étrangère. Bien que l'hébreu fasse partie de leur environnement quotidien, leur exposition à cette langue reste parfois limitée durant les années clés du développement du langage, ce qui mène à une acquisition partielle ou lacunaire de l'hébreu. Ces élèves risquent d'arriver au collège avec un écart grandissant en lecture, en écriture, en vocabulaire et en compréhension de l'hébreu écrit.",
+    "about.lead":"La Hebrew Sunday School de Nofar s'adresse aux enfants bilingues qui vivent en Israël mais sont scolarisés dans une école de langue étrangère. Bien que l'hébreu fasse partie de leur environnement quotidien, leur exposition à cette langue reste parfois limitée durant les années clés du développement du langage, ce qui mène à une acquisition partielle ou lacunaire de l'hébreu. Ces élèves risquent d'arriver au collège avec un écart grandissant en lecture, en écriture, en vocabulaire et en compréhension de l'hébreu écrit.",
     "about.c1.title":"Pourquoi cette école existe",
     "about.c2.title":"Notre méthode pédagogique",
     "about.c3.title":"Une langue que l'on vit",
-    "about.body":"Ce qui distingue l'École du dimanche, c'est sa façon d'enseigner. Au lieu de l'apprentissage par cœur, la langue s'acquiert selon des principes neuro-pédagogiques : un apprentissage multisensoriel, expérientiel et actif, qui sollicite plusieurs canaux de perception en parallèle et ancre l'hébreu de façon organique. Chaque élève apprend à son propre niveau, avec à la clé des progrès dans tous les aspects de la langue : lecture, écriture, compréhension et expression orale.",
+    "about.body":"Ce qui distingue la Hebrew Sunday School, c'est sa façon d'enseigner. Au lieu de l'apprentissage par cœur, la langue s'acquiert selon des principes neuro-pédagogiques : un apprentissage multisensoriel, expérientiel et actif, qui sollicite plusieurs canaux de perception en parallèle et ancre l'hébreu de façon organique. Chaque élève apprend à son propre niveau, avec à la clé des progrès dans tous les aspects de la langue : lecture, écriture, compréhension et expression orale.",
     "about.body2":"Tout cela se fait à travers un enrichissement et un lien avec l'identité israélienne : les enfants découvrent des figures qui ont façonné l'histoire juive et israélienne, des chansons hébraïques, les fêtes d'Israël et leurs coutumes, des journées et événements nationaux, des lieux emblématiques du pays, ainsi que des expressions et tournures de la langue vivante, et ainsi l'hébreu passe d'une langue qu'on étudie à une langue qu'on vit.",
 
     "sched.eyebrow":"Emploi du temps",
-    "sched.title":"Une journée à l'École du dimanche",
+    "sched.title":"Une journée à la Hebrew Sunday School",
     "sched.sub":"",
-    "sched.block1":"4 heures de cours · École du dimanche",
-    "sched.block2":"Option après les cours · 2 heures supplémentaires (en option)",
+    "sched.block1":"4 <span class=\"label-opt\">à 6</span> heures de cours · Hebrew Sunday School",
+    "sched.block2":"Sunday Club · 2 heures supplémentaires (en option)",
     "sched.endcap":"Fin de la journée · 13h40",
-    "sched.hebnote":"Dans tous les cours de l'École du dimanche, l'accent est mis sur le développement des compétences linguistiques et le renforcement de l'hébreu.",
-    "sched.day.title":"Une journée type à l'École du dimanche",
+    "sched.hebnote":"Dans tous les cours de la Hebrew Sunday School, l'accent est mis sur le développement des compétences linguistiques et le renforcement de l'hébreu.",
+    "sched.day.title":"Une journée type à la Hebrew Sunday School",
     "sched.day.note":"L'emploi du temps est indicatif - chaque groupe suit les 4 premières heures dans un ordre différent. Au total, chaque élève reçoit :",
-    "sched.day.tot1":"Hébreu, éducation linguistique et culture",
+    "sched.day.tot1":"Hébreu, éducation linguistique et patrimoine d'Israël",
     "sched.day.tot2":"Tanakh et étude des Écritures",
-    "sched.day.tot3":"IA pour enfants",
+    "sched.day.tot3":"Sunday Club",
     "sched.day.unit":"heures de cours",
     "sched.day.optunit":"au choix · facultatif",
     "sched.day.lesson1":"Éducation linguistique + patrimoine et culture",
     "sched.day.break":"Pause",
     "sched.day.bible":"Tanakh et étude des Écritures",
-    "sched.day.optlabel":"Atelier IA · en option",
-    "sched.day.ai":"Cours double · IA pour enfants",
-    "sched.daycal.title":"Quand a lieu l'École du dimanche ?",
-    "sched.daycal.body":"Le calendrier de l'École du dimanche est aligné sur celui de l'école Marc Chagall. Les jours où l'EDD a lieu, l'École du dimanche a également lieu ; les jours de congé sans EDD, il n'y a pas de cours. L'École du dimanche s'inscrit ainsi naturellement dans le calendrier scolaire que vous connaissez déjà.",
-    "sched.daycal.cta":"Cliquez pour ouvrir notre calendrier complet",
+    "sched.day.optlabel":"Sunday Club · en option",
+    "sched.day.ai":"Hebrew Sunday Club",
+    "sched.daycal.title":"Quand a lieu la Hebrew Sunday School ?",
+    "sched.daycal.body":"Le calendrier de la Hebrew Sunday School est aligné sur celui de l'école Marc Chagall. Les jours où l'EDD a lieu, les cours ont également lieu ; les jours de congé sans EDD, il n'y a pas de cours. La Hebrew Sunday School s'inscrit ainsi naturellement dans le calendrier scolaire que vous connaissez déjà.",
+    "sched.daycal.disclaimer":"<strong>À noter :</strong> le calendrier définitif de l'EDD de Marc Chagall n'a pas encore été publié. À ce stade, <strong>36 séances d'EDD</strong> sont prévues cette année, et notre emploi du temps a été construit en conséquence. Si Marc Chagall programme finalement moins de séances d'EDD, les cours concernés seront également annulés chez nous, <strong>et le coût de ces séances vous sera intégralement remboursé</strong>. Notre calendrier restera ainsi parfaitement aligné sur celui de Marc Chagall.",
+    "sched.daycal.cta":"Voir le calendrier complet",
     "sched.loc.title":"Où se déroulent les cours ?",
     "sched.loc.body":"Centre communautaire de Neve Tsedek · 9 Neve Shalom, Tel-Aviv",
     "sched.loc.cta":"Ouvrir l'itinéraire sur Google Maps",
@@ -4143,42 +4299,44 @@ const I18N = {
     "sched.groups.body":"Les élèves sont répartis en deux groupes, selon leur âge et leur niveau d'hébreu. Chaque enfant est placé dans le groupe qui lui convient le mieux.",
     "sched.s1.meta":"Première partie · 2 heures",
     "sched.s1.title":"Éducation linguistique, culture et patrimoine d'Israël",
-    "sched.s1.who":"Animé par Nofar Gargrood",
-    "sched.s1.desc":"Allie le renforcement de l'hébreu et l'enrichissement culturel : élargissement du vocabulaire, lecture et compréhension de texte, écriture créative, ainsi qu'une découverte des fêtes, des lieux emblématiques et des figures de la culture israélienne. L'apprentissage est multisensoriel, expérientiel, intègre la technologie et repose sur des principes neuro-pédagogiques.",
+    "sched.s1.who":"Animée par la fondatrice, Nofar Gargrood",
+    "sched.s1.desc":"Cette partie allie le renforcement de l'hébreu et l'enrichissement culturel : élargissement du vocabulaire, lecture et compréhension de texte, écriture créative, ainsi que la découverte des fêtes, des lieux emblématiques et des grandes figures de la culture et du patrimoine d'Israël. L'apprentissage est multisensoriel et expérientiel ; il intègre la technologie et repose sur des principes neuro-pédagogiques, ainsi que sur une pédagogie active qui mobilise les élèves.",
     "sched.s2.meta":"Deuxième partie · 2 heures",
     "sched.s2.title":"Tanakh et étude des Écritures",
-    "sched.s2.who":"Animé par Itay Ziv",
-    "sched.s2.desc":"Les récits bibliques sont étudiés selon une approche accessible et stimulante, qui invite les élèves à questionner, explorer et découvrir. L'accent est mis sur le lien entre le texte et la vie d'aujourd'hui, à travers la discussion, l'apprentissage entre pairs et la création.",
+    "sched.s2.who":"Animée par l'enseignant Itay Ziv",
+    "sched.s2.desc":"Les récits bibliques sont étudiés selon une approche accessible et stimulante, qui invite les élèves à questionner, explorer et découvrir. L'accent est mis sur le lien entre le texte et la vie d'aujourd'hui, à travers la discussion, l'apprentissage entre pairs et la création. Itay relie les récits à des valeurs qui accompagnent chaque élève - comme la persévérance face aux défis, l'amitié sincère ou la responsabilité envers l'autre - afin que l'apprentissage les touche aussi en dehors de la classe.",
+    "sched.s3.title":"Sunday Club",
+    "sched.s3.opt":"en option",
+    "sched.s3.who":"Animée par l'enseignante Orly Cohen",
+    "sched.s3.desc":"Sunday Club est l'après-midi où l'hébreu vient naturellement - à travers des jeux, des films, des ateliers créatifs et des activités de groupe. C'est le moment détendu de la journée, où les enfants se rapprochent de la langue et les uns des autres. Orly anime le Sunday Club avec une attention personnelle portée à chaque enfant, et avec la conviction qu'un apprentissage expérientiel relie le savoir, l'expérience et le plaisir.",
 
-    "after.eyebrow":"IA pour enfants",
-    "after.optpill":"Module d'inscription optionnel · à ajouter à la journée à l'École du dimanche",
-    "after.title":"L'atelier IA pour enfants",
-    "after.sub":"<strong>En option</strong>, les enfants inscrits à l'École du dimanche peuvent ajouter deux heures consacrées à l'IA pour enfants. L'inscription se fait en même temps que celle de l'École du dimanche.",
+    "after.eyebrow":"Sunday Club",
+    "after.optpill":"Option supplémentaire · à ajouter à la journée à la Hebrew Sunday School",
+    "after.title":"L'après-midi où l'on apprend l'hébreu sans même s'en rendre compte",
+    "after.sub":"<strong>En option</strong>, les enfants inscrits à la Hebrew Sunday School peuvent ajouter deux heures de Sunday Club. L'inscription se fait en même temps que celle de la Hebrew Sunday School.",
     "after.timetag":"· 2 heures de cours",
-    "after.h3":"Atelier IA pour enfants · après les cours",
-    "after.who":"Animé par Dvir Biton",
-    "after.desc":"[Description - à compléter. Découverte expérientielle des outils d'IA adaptés à l'âge, esprit critique et création de projets.]",
-    "after.note1":"Tablette requise",
+    "after.h3":"Sunday Club",
+    "after.desc":"Au Sunday Club, chaque semaine apporte une nouvelle expérience : des jeux qui développent la réflexion et le langage, des films en hébreu, des ateliers créatifs et des activités de groupe. À chaque fois, l'hébreu vient naturellement, à travers le plaisir, le partage et les rires. C'est le moment détendu de la journée, où les enfants se rapprochent de la langue - et les uns des autres.",
     "after.note2":"Ouverture sous condition d'inscriptions",
-    "after.endcap":"Fin de la journée avec l'atelier · 15h30",
+    "after.endcap":"Fin de la journée avec le Sunday Club · 15h30",
 
     "staff.eyebrow":"L'équipe",
     "staff.title":"Trois enseignants passionnés par ce qu'ils transmettent.",
     "staff.nofar.role":"Fondatrice, directrice et enseignante",
     "staff.nofar.name":"Nofar Gargrood",
-    "staff.nofar.subject":"Hébreu et éducation linguistique · Patrimoine",
-    "staff.nofar.toggle":"À propos de Nofar, directrice de l'École du dimanche",
+    "staff.nofar.subject":"Hébreu et éducation linguistique · Patrimoine et culture d'Israël",
+    "staff.nofar.toggle":"À propos de Nofar, directrice de la Hebrew Sunday School",
     "staff.nofar.bio":"<p>Enseignante, formatrice et conceptrice pédagogique, titulaire d'un diplôme en neurosciences de l'Université de Tel-Aviv. Spécialisée dans la neuro-pédagogie de l'enseignement des langues, et en particulier auprès d'élèves bilingues, domaine dans lequel elle anime aussi des formations. Des années de travail avec des enfants grandissant entre deux langues l'ont menée à une conviction : l'hébreu ne s'acquiert pas par cœur, mais par l'expérience.</p><p>Sa méthode d'enseignement repose sur deux approches. Le constructivisme, où l'enfant construit lui-même son savoir par la découverte au lieu de le recevoir passivement ; et l'enseignement proactif, qui identifie la difficulté à l'avance et la prévient avant même qu'elle n'apparaisse. Chaque cours sollicite plusieurs canaux d'apprentissage en parallèle : l'écoute, la vue, le mouvement et la parole, car c'est ainsi que le cerveau ancre une nouvelle langue.</p><p>Nofar transmet cette expertise <strong>en tant que formatrice au sein du ministère de l'Éducation, animant des formations et du développement professionnel pour des équipes éducatives</strong>, auxquelles ont participé des centaines d'enseignants et de professionnels de l'éducation. En parallèle, elle développe des outils techno-pédagogiques comme l'application « Le Grand Jeu des Mots », utilisée par des enseignantes en classe, avec laquelle des centaines d'élèves s'exercent quotidiennement pour renforcer leur hébreu de façon ludique.</p>",
-    "staff.itay.role":"Enseignant Sunday School",
+    "staff.itay.role":"Enseignant à la Hebrew Sunday School",
     "staff.itay.name":"Itay Ziv",
     "staff.itay.subject":"Tanakh et étude des Écritures",
-    "staff.itay.toggle":"À propos d'Itay, enseignant de l'École du dimanche",
-    "staff.itay.bio":"<p>Enseignant qualifié, titulaire d'un diplôme en éducation et d'études avancées en enseignement de la Bible et du Tanakh. Fort de plus de huit ans d'expérience dans l'enseignement du Tanakh et de la musique, il entame cette année sa deuxième année à l'École du dimanche.</p><p>Sa méthode d'enseignement repose sur une approche fondée sur la curiosité et l'investigation : l'élève ne reçoit pas les récits bibliques comme un savoir achevé, mais les explore par lui-même. Le rôle de l'enseignant est de guider, de comprendre l'enfant et d'éveiller son intérêt, convaincu que la curiosité est le moteur d'un apprentissage authentique.</p><p>Itay privilégie l'apprentissage entre pairs, où les élèves s'enseignent les uns aux autres dans leur propre langage, de sorte que la matière s'ancre durablement. Il veille à ce que l'apprentissage soit pertinent pour leur monde, et intègre des touches issues des arts et du jeu pour relier les récits bibliques aux élèves d'une manière créative et singulière.</p>",
-    "staff.dvir.role":"Enseignant de l'atelier IA pour enfants",
-    "staff.dvir.name":"Dvir Biton",
-    "staff.dvir.subject":"IA pour enfants",
-    "staff.dvir.toggle":"À propos de Dvir, enseignant de l'atelier IA pour enfants",
-    "staff.dvir.bio":"[Biographie courte de Dvir - à compléter]",
+    "staff.itay.toggle":"À propos d'Itay, enseignant de la Hebrew Sunday School",
+    "staff.itay.bio":"<p>Enseignant qualifié, titulaire d'un diplôme en éducation et d'études avancées en enseignement de la Bible et du Tanakh. Fort de plus de huit ans d'expérience dans l'enseignement du Tanakh et de la musique, il entame cette année sa deuxième année à la Hebrew Sunday School.</p><p>Sa méthode d'enseignement repose sur une approche fondée sur la curiosité et l'investigation : l'élève ne reçoit pas les récits bibliques comme un savoir achevé, mais les explore par lui-même. Le rôle de l'enseignant est de guider, de comprendre l'enfant et d'éveiller son intérêt, convaincu que la curiosité est le moteur d'un apprentissage authentique.</p><p>Itay privilégie l'apprentissage entre pairs, où les élèves s'enseignent les uns aux autres dans leur propre langage, de sorte que la matière s'ancre durablement. Il veille à ce que l'apprentissage soit pertinent pour leur monde, et intègre des touches issues des arts et du jeu pour relier les récits bibliques aux élèves d'une manière créative et singulière.</p>",
+    "staff.orly.role":"Enseignante au Sunday Club",
+    "staff.orly.name":"Orly Cohen",
+    "staff.orly.subject":"Apprentissage expérientiel de l'hébreu",
+    "staff.orly.toggle":"À propos d'Orly, enseignante au Sunday Club",
+    "staff.orly.bio":"<p>Enseignante de métier et professeure principale dans le cadre scolaire, Orly croit que le lien personnel et significatif avec chaque élève est le fondement de tout apprentissage. Elle voit en chaque enfant tout un univers de capacités, de forces et de besoins, et adapte son enseignement à son monde, à ses centres d'intérêt et à son rythme, afin que l'apprentissage ait du sens pour lui.</p><p>Sa conception de l'enseignement repose sur un apprentissage expérientiel, actif et plaisant, qui relie le savoir, l'expérience et le plaisir. Elle encourage la curiosité, la créativité et la pensée autonome, et intègre la technologie et les médias comme outils au service d'un apprentissage significatif.</p><p>Au cœur de son travail se trouve le sentiment de compétence de l'élève. Selon elle, le rôle de l'enseignante est d'identifier les forces uniques de chaque élève, de cultiver sa confiance en soi et son sentiment de réussite, et de lui donner les outils nécessaires pour faire face aux défis scolaires, émotionnels et sociaux.</p>",
 
     "reg.liveBadge":"La phase active se met à jour selon la date",
     "reg.eyebrow":"Inscriptions année scolaire 2026-2027",
@@ -4187,16 +4345,21 @@ const I18N = {
     "reg.notetitle":"Vous ne payez que les heures de cours : les pauses sont incluses",
     "reg.notebody":"Le tarif est calculé uniquement sur les heures de cours effectivement enseignées. <em>Les temps de pause sont inclus, sans frais supplémentaires.</em>",
     "reg.inc.title":"L'inscription comprend tout",
-    "reg.inc.intro":"Les frais de scolarité couvrent tout ce dont l'enfant a besoin pour toute l'année :",
+    "reg.inc.intro":"Les frais de scolarité couvrent tout ce dont votre enfant a besoin pour toute l'année :",
     "reg.inc.1":"Des manuels adaptés à chaque groupe d'âge",
     "reg.inc.2":"Un système numérique pour la transmission et le rendu des devoirs",
-    "reg.inc.3":"Un outil numérique pour accompagner la dynamique de classe",
-    "reg.inc.4":"Des outils technologiques pour un enseignement proactif et expérientiel",
+    "reg.inc.3":"Une application de gestion des cours, avec un suivi régulier auprès des parents, afin de favoriser un climat de classe positif",
+    "reg.inc.4":"Des outils d'apprentissage, des développements technologiques sur mesure, des jeux physiques et des supports pédagogiques pour un enseignement proactif et expérientiel",
     "reg.inc.5":"Des enseignants de premier plan, pour qui l'enseignement est une vocation",
+
+    "bring.title":"À apporter",
+    "bring.item1":"2 grands cahiers d'hébreu format A4, à grands interlignes",
+    "bring.item2":"Une trousse avec crayons, stylos, crayons de couleur, colle et ciseaux",
+    "bring.item3":"De quoi manger pour la journée et une bouteille d'eau",
 
     "sib.eyebrow":"Réduction fratrie",
     "sib.title":"Réduction fratrie",
-    "sib.body":"À noter : les parents de plusieurs enfants inscrits à l'École du dimanche bénéficient d'une réduction fratrie de 15% à partir du deuxième enfant inscrit au programme.",
+    "sib.body":"À noter : les parents de plusieurs enfants inscrits à la Hebrew Sunday School bénéficient d'une réduction fratrie de 15% à partir du deuxième enfant inscrit au programme.",
     "sib.prefix":"",
     "sib.suffix":"Réduction fratrie",
     "sib.kid1":"1er enfant",
@@ -4208,7 +4371,9 @@ const I18N = {
     "reg.form.title":"Règlement et inscription",
     "reg.form.body":"",
     "reg.step1.title":"Choisir une formule",
-    "reg.step1.body":"Un clic sur le bouton vous mène au site d'inscription, où vous choisissez la formule qui convient : <strong>avec l'atelier IA</strong> ou <strong>sans l'atelier IA</strong>. L'acompte réserve la place et constitue le premier paiement, pour le mois de septembre.",
+    "reg.step1.body":"Un clic sur le bouton vous mène au site d'inscription, où vous choisissez la formule qui convient : <strong>avec le Sunday Club</strong> ou <strong>sans le Sunday Club</strong>. L'acompte réserve la place et constitue le premier paiement, pour le mois de septembre.",
+    "reg.steppay.title":"Paiement mensuel fixe",
+    "reg.steppay.body":"Le paiement est calculé sur la base de <strong>36 journées complètes de Sunday School</strong>, et réparti sur <strong>10 mensualités</strong> selon la formule choisie.",
     "reg.step2.title":"Une formule = un enfant",
     "reg.step2.body":"Chaque formule concerne <strong>un seul enfant</strong>. Pour inscrire des frères et sœurs, il suffit de répéter la même inscription rapide pour chaque enfant.",
     "reg.step3.title":"Réduction fratrie · 15% automatique",
@@ -4221,7 +4386,7 @@ const I18N = {
     "reg.form.inc4":"",
     "reg.form.cta":"Choisir une formule et s'inscrire",
     "reg.form.seats":"Places limitées · Inscription sous réserve de disponibilité",
-    "reg.form.sig":"Inscription École du dimanche",
+    "reg.form.sig":"Inscription Hebrew Sunday School",
     "contact.title":"D'autres questions ?",
     "contact.body":"N'hésitez pas à écrire à Nofar sur WhatsApp.",
     "contact.cta":"Le WhatsApp de Nofar",
@@ -4240,7 +4405,7 @@ const I18N = {
     "tier.cta.future":"Réserver une place",
     "tier.priceTBD":"[tarif à venir]",
     "tier.feat.early.1":"Le tarif le plus bas · économie significative",
-    "tier.feat.early.2":"Place garantie en classe et à l'atelier IA",
+    "tier.feat.early.2":"Place garantie en classe et au Sunday Club",
     "tier.feat.early.3":"",
     "tier.feat.regular.1":"Période d'inscription principale",
     "tier.feat.regular.2":"",
