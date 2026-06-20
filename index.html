@@ -474,18 +474,22 @@ section{padding-block:64px;position:relative}
    ═══════════════════════════════════════════════════════════════ */
 .testimonials{background:var(--cream)}
 
+/* Mur de temoignages en masonry (colonnes CSS) : les cartes se rangent
+   serrees dans des colonnes, sans trou ni carte orpheline, quelles que
+   soient leurs hauteurs (captures hautes / bulles courtes). */
 .wa-wall{
-  display:grid;
-  grid-template-columns:repeat(2, 1fr);
-  gap:18px;
+  --wa-gap:18px;
+  column-count:2;
+  column-gap:var(--wa-gap);
   margin-block-start:32px;
-  align-items:start;
 }
-@media (min-width:680px){ .wa-wall{grid-template-columns:repeat(3, 1fr);gap:22px} }
-@media (min-width:1024px){ .wa-wall{grid-template-columns:repeat(4, 1fr);gap:26px} }
+@media (min-width:680px){ .wa-wall{ --wa-gap:22px; column-count:3 } }
+@media (min-width:1024px){ .wa-wall{ --wa-gap:26px; column-count:4 } }
 
 .wa-card{
-  margin:0;
+  margin:0 0 var(--wa-gap);
+  break-inside:avoid;
+  -webkit-column-break-inside:avoid;
   background:var(--card);
   border-radius:6px;
   padding:10px 10px 14px;
@@ -538,6 +542,92 @@ section{padding-block:64px;position:relative}
     linear-gradient(180deg, #075E54 0%, #075E54 56px, #ECE5DD 56px, #DDD5C9 100%);
   position:relative;
 }
+
+/* ===== Bulle WhatsApp recreee (francais uniquement) =====
+   En hebreu : la capture d'ecran d'origine. En francais : cette bulle traduite.
+   Les 2 temoignages rediges en anglais (Talia Bergman, Robbin) restent en
+   capture dans les deux langues - ils n'ont pas la classe .has-fr. */
+.wa-fr{ display:none }
+body[lang="fr"] .wa-card.has-fr > img{ display:none }
+body[lang="fr"] .wa-card.has-fr > .wa-fr{ display:block }
+
+.wa-fr{
+  direction:ltr;
+  text-align:start;
+  border-radius:3px;
+  padding:14px 12px 16px;
+  background-color:#E4DDD4;
+  background-image:
+    radial-gradient(circle at 16% 18%, rgba(11,38,33,.05) 0 3px, transparent 4px),
+    radial-gradient(circle at 78% 30%, rgba(11,38,33,.04) 0 4px, transparent 5px),
+    radial-gradient(circle at 44% 64%, rgba(11,38,33,.045) 0 3px, transparent 4px),
+    radial-gradient(circle at 88% 82%, rgba(11,38,33,.04) 0 3px, transparent 4px),
+    radial-gradient(circle at 26% 88%, rgba(11,38,33,.035) 0 4px, transparent 5px);
+  background-size:120px 120px;
+  font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+}
+.wa-fr-bubble{
+  position:relative;
+  margin-inline-start:7px;
+  background:#fff;
+  border-radius:9px;
+  border-start-start-radius:1px;
+  padding:9px 11px 7px;
+  box-shadow:0 1px 1.5px rgba(11,38,33,.16);
+}
+.wa-fr-bubble::before{
+  content:"";
+  position:absolute;
+  inset-block-start:0;
+  inset-inline-start:-7px;
+  inline-size:9px; block-size:14px;
+  background:#fff;
+  clip-path:polygon(100% 0, 0 0, 100% 100%);
+}
+.wa-fr-bubble p{
+  margin:0 0 8px;
+  font-family:inherit;
+  font-style:normal;
+  font-weight:400;
+  font-size:.76rem;
+  line-height:1.5;
+  color:#111b21;
+  letter-spacing:0;
+}
+.wa-fr-bubble p:last-of-type{ margin-bottom:3px }
+.wa-fr-meta{
+  display:block;
+  text-align:end;
+  font-size:.62rem;
+  line-height:1;
+  color:#667781;
+  font-family:inherit;
+  font-style:normal;
+}
+.wa-fr-meta .tick{ color:#53bdeb; font-size:.7rem; margin-inline-start:4px; letter-spacing:-2px }
+
+/* "Voir plus" : replie une bulle tres longue (Raaya) pour equilibrer le mur */
+.wa-fr-text{ overflow:hidden }
+.wa-fr-clamp .wa-fr-text{ position:relative; max-block-size:7.5em }
+.wa-fr-clamp .wa-fr-text::after{
+  content:""; position:absolute; inset-inline:0; inset-block-end:0; block-size:2.4em;
+  background:linear-gradient(rgba(255,255,255,0), #fff);
+}
+.wa-fr-clamp.is-open .wa-fr-text{ max-block-size:none }
+.wa-fr-clamp.is-open .wa-fr-text::after{ display:none }
+.wa-fr-more{
+  display:inline-block; cursor:pointer; user-select:none;
+  margin-block-start:5px; padding:0; border:0; background:none;
+  font-family:inherit; font-style:normal; font-size:.72rem; font-weight:600; color:#11514B;
+}
+.wa-fr-more::before{ content:"Voir plus \25BE" }
+.wa-fr-clamp.is-open .wa-fr-more::before{ content:"Voir moins \25B4" }
+
+@media (max-width:600px){
+  .wa-fr{ padding:11px 9px 13px }
+  .wa-fr-bubble p{ font-size:.7rem; margin-bottom:7px }
+}
+
 .wa-card figcaption{
   text-align:center;
   padding:14px 8px 4px;
@@ -3293,7 +3383,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   .cta-btn.large{font-size:.95rem;padding:14px 22px}
 
   /* WhatsApp wall - slightly tighter */
-  .wa-wall{gap:12px;margin-block-start:24px}
+  .wa-wall{--wa-gap:12px;margin-block-start:24px}
   .wa-card{padding:8px 8px 12px}
   .wa-card figcaption{padding:10px 4px 2px}
   .wa-card figcaption b{font-size:.85rem}
@@ -3418,50 +3508,116 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           <span data-i18n="tt.p2.rel">אמא של סיגל · קבוצת הקטנים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="1.5">
+      <figure class="wa-card has-fr" data-rot="1.5">
         <img src="assets/testimonials/t3.jpg" alt="המלצה מטליה" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>Je recommande très vivement la Sunday School de Nofar !! Nofar est investie, dévouée, dotée d’une approche formidable avec les enfants et de méthodes d’enseignement innovantes qui les mobilisent dans l’apprentissage d’une manière inspirante et enthousiasmante !</p>
+            <p>Au-delà du plaisir que les enfants ont à aller à la Sunday School, ils y acquièrent des connaissances importantes qu’ils ne reçoivent pas à Marc Chagall, notamment autour des récits de la Torah, de la langue hébraïque et des fêtes d’Israël.</p>
+            <p>Au-delà de l’aspect pédagogique, l’accent est également mis sur la coopération, la prise de responsabilité personnelle et la lecture - un vrai bonus ! Je recommande chaleureusement 😊</p>
+            <span class="wa-fr-meta">23:06<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p3.name">טליה</b>
           <span data-i18n="tt.p3.rel">אמא של שילה (הגדולים) ושרונה (הקטנים)</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="-1">
+      <figure class="wa-card has-fr" data-rot="-1">
         <img src="assets/testimonials/t5.jpg" alt="המלצה מלילך" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>Je suis la grand-mère de trois petits-enfants inscrits à la Sunday School : Maya est dans le groupe des grands, et Aviv et Yanaï dans le groupe des petits. La première chose que je vois, c’est à quel point ils attendent le dimanche avec impatience. Ils n’ont pas l’impression d’« aller apprendre l’hébreu » : ils vont prendre du plaisir, s’imprégner de nouvelles choses et s’enrichir, tout en améliorant et en développant leur hébreu.</p>
+            <p>Maya lit et écrit déjà avec une assurance que je ne lui connaissais pas auparavant, et j’entends les plus petits utiliser à la maison des mots et des chansons qu’ils apprennent. On voit que, pour Nofar, l’enseignement de l’hébreu, du Tanakh et du patrimoine israélien est une véritable mission, et que chaque enfant reçoit une attention adaptée à son niveau. Je recommande de tout cœur.</p>
+            <span class="wa-fr-meta">16:25<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p5.name">לילך</b>
           <span data-i18n="tt.p5.rel">סבתא של מאיה (הגדולים), ינאי ואביב (הקטנים)</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="2">
+      <figure class="wa-card has-fr" data-rot="2">
         <img src="assets/testimonials/t6.jpg" alt="המלצה מנטלי" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>Je souhaite recommander chaleureusement la Sunday School que fréquentent mes filles. Pour nous, c’est bien plus qu’un cadre d’apprentissage : c’est une expérience porteuse de sens, qui crée un lien avec la langue hébraïque, la culture israélienne et notre patrimoine, de manière agréable, expérientielle et enrichissante.</p>
+            <p>Mes filles, qui sont en CM1 et en CE1, aiment beaucoup venir chaque semaine, et l’on peut vraiment voir leur confiance en hébreu, leur vocabulaire et leur lien avec l’identité israélienne se renforcer au fil du temps.</p>
+            <p>Cette structure associe l’apprentissage, l’expérience et le sentiment de communauté d’une manière très particulière, et nous sommes très heureux d’en faire partie ❤️</p>
+            <span class="wa-fr-meta">17:30<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p6.name">נטלי</b>
           <span data-i18n="tt.p6.rel">אמא של אמיליה (הגדולים) וסופיה (הקטנים)</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="-1.5">
+      <figure class="wa-card" data-rot="-2.5">
+        <img src="assets/testimonials/t9.jpg" alt="המלצה מרובין" loading="lazy" />
+        <figcaption>
+          <b data-i18n="tt.p9.name">רובין</b>
+          <span data-i18n="tt.p9.rel">אמא של סיירה (הגדולים) וג'קסון (הקטנים)</span>
+        </figcaption>
+      </figure>
+      <figure class="wa-card has-fr" data-rot="-1.5">
         <img src="assets/testimonials/t8.jpg" alt="המלצה מסאפיה" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>Nofar est une enseignante dévouée et très motivée, qui s’investit de tout cœur auprès de chaque enfant et parvient à créer un véritable lien avec l’apprentissage.</p>
+            <p>À la Sunday School, Shila apprend l’hébreu tout en découvrant en profondeur la culture juive et la culture israélienne, de manière expérientielle et agréable.</p>
+            <p>L’investissement, la patience et l’attention de Nofar se ressentent dans chaque cours, et elle parvient à éveiller chez les enfants la curiosité et l’amour de l’apprentissage.</p>
+            <p>Shila attend toujours le dimanche et sa rencontre avec Nofar avec impatience, et elle rentre à la maison avec de nouvelles connaissances, de l’enthousiasme et un grand sourire.</p>
+            <span class="wa-fr-meta">19:42<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p8.name">סאפיה</b>
           <span data-i18n="tt.p8.rel">אמא של שילה · קבוצת הקטנים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="1">
+      <figure class="wa-card has-fr" data-rot="1">
         <img src="assets/testimonials/t7.jpg" alt="המלצה מרעיה" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble wa-fr-clamp">
+            <div class="wa-fr-text">
+              <p>Nofar a commencé comme professeure particulière de ma fille pendant sa dernière année de primaire, et l’a préparée à intégrer un collège israélien après huit années dans un cadre francophone. Le résultat a été excellent : ma fille a connu une transition en douceur, réussie et surtout sereine.</p>
+              <p>Par la suite, elle a également enseigné à ma fille cadette, alors en CE2. Cette fois, nous avons mis l’accent sur une routine d’apprentissage en hébreu, et non sur une préparation intensive. Lorsque Nofar m’a raconté qu’elle ouvrait un groupe d’apprentissage pour des filles de son âge, je n’ai pas hésité une seconde : nous l’avons rejoint ! Le groupe se déroulait comme un cours en classe et a exposé ma fille à des contenus excellents et approfondis. Les techniques d’apprentissage de Nofar sont elles aussi avancées et actuelles, et ont permis un apprentissage expérientiel unique, très différent de ce à quoi elle était habituée. La combinaison d’un tel groupe d’apprentissage avec des cours particuliers d’hébreu permet de rattraper le rythme des enfants des écoles israéliennes et réduit le niveau d’inquiétude des enfants qui étudient dans une langue étrangère et souhaitent s’intégrer dans des études en hébreu.</p>
+              <p>Je recommande très chaleureusement Nofar comme enseignante, ainsi que ses excellents groupes d’apprentissage !</p>
+            </div>
+            <button type="button" class="wa-fr-more" aria-label="Voir plus ou voir moins" onclick="this.closest('.wa-fr-bubble').classList.toggle('is-open')"></button>
+            <span class="wa-fr-meta">21:13<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p7.name">רעיה</b>
           <span data-i18n="tt.p7.rel">אמא של אלה · קבוצת הגדולים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="-2.5">
+      <figure class="wa-card has-fr" data-rot="-2.5">
         <img src="assets/testimonials/t4.jpg" alt="המלצה מיערה" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>Nofar donne des cours d’hébreu le dimanche. Le groupe est petit, de qualité et agréable, et Nofar est une enseignante très talentueuse, patiente et agréable.</p>
+            <p>Elle transmet des contenus riches et porteurs de sens, et intègre à ses cours des outils technologiques avancés et amusants, qui rendent l’apprentissage expérientiel et intéressant.</p>
+            <p>Nofar aborde des sujets si importants pour les enfants qui étudient dans une école française et qui ne trouvent pas toujours suffisamment de place dans leur quotidien scolaire : la culture israélienne, la Torah, ainsi qu’un travail approfondi et enrichissant autour de la langue hébraïque.</p>
+            <p>Très recommandé ❤</p>
+            <span class="wa-fr-meta">14:38<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p4.name">יערה</b>
           <span data-i18n="tt.p4.rel">אמא של לילי · קבוצת הגדולים</span>
         </figcaption>
       </figure>
-      <figure class="wa-card" data-rot="1.8">
+      <figure class="wa-card has-fr" data-rot="1.8">
         <img src="assets/testimonials/t1.jpg" alt="המלצה מאלדד" loading="lazy" />
+        <div class="wa-fr">
+          <div class="wa-fr-bubble">
+            <p>La Sunday School de Nofar combine un apprentissage expérientiel dans une ambiance différente, ainsi que l’utilisation d’outils technologiques, grâce auxquels une grande partie des contenus qui nous manquent à Chagall est transmise : la Torah, le patrimoine juif et un enseignement de l’hébreu de haut niveau, visant à permettre aux enfants de suivre le rythme, en lecture et en écriture, des enfants scolarisés dans le système éducatif israélien.</p>
+            <p>Nofar et Itay sont professionnels et charmants - nous recommandons vivement !</p>
+            <span class="wa-fr-meta">20:05<span class="tick">✓✓</span></span>
+          </div>
+        </div>
         <figcaption>
           <b data-i18n="tt.p1.name">אלדד</b>
           <span data-i18n="tt.p1.rel">אבא של נרי · קבוצת הקטנים</span>
@@ -4074,6 +4230,7 @@ const I18N = {
     "tt.p6.name":"נטלי","tt.p6.rel":"אמא של אמיליה (הגדולים) וסופיה (הקטנים)",
     "tt.p7.name":"רעיה","tt.p7.rel":"אמא של אלה · קבוצת הגדולים",
     "tt.p8.name":"סאפיה","tt.p8.rel":"אמא של שילה · קבוצת הקטנים",
+    "tt.p9.name":"רובין","tt.p9.rel":"אמא של סיירה (הגדולים) וג'קסון (הקטנים)",
 
     "about.eyebrow":"על הסאנדי",
     "about.title":"בית בעברית. גשר בין שני העולמות.",
@@ -4258,6 +4415,7 @@ const I18N = {
     "tt.p6.name":"Natalie","tt.p6.rel":"Maman d'Emilia (grands) et Sofia (petits)",
     "tt.p7.name":"Raaya","tt.p7.rel":"Maman d'Ella · groupe des grands",
     "tt.p8.name":"Safiya","tt.p8.rel":"Maman de Shila · groupe des petits",
+    "tt.p9.name":"Robbin","tt.p9.rel":"Maman de Sierra (grands) et Jackson (petits)",
 
     "about.eyebrow":"À propos",
     "about.title":"Une maison en hébreu. Un pont entre deux mondes.",
