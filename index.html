@@ -550,12 +550,14 @@ section{padding-block:64px;position:relative}
 .wa-fr{ display:none }
 body[lang="fr"] .wa-card.has-fr > img{ display:none }
 body[lang="fr"] .wa-card.has-fr > .wa-fr{ display:block }
+body[lang="fr"] .wa-card.has-fr > figcaption{ display:none }  /* nom deplace dans l'en-tete */
 
 .wa-fr{
   direction:ltr;
   text-align:start;
-  border-radius:3px;
-  padding:14px 12px 16px;
+  border-radius:6px;
+  overflow:hidden;
+  padding:0;
   background-color:#E4DDD4;
   background-image:
     radial-gradient(circle at 16% 18%, rgba(11,38,33,.05) 0 3px, transparent 4px),
@@ -566,9 +568,26 @@ body[lang="fr"] .wa-card.has-fr > .wa-fr{ display:block }
   background-size:120px 120px;
   font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
 }
+/* En-tete facon WhatsApp : nom du parent en haut, comme sur la capture d'origine */
+.wa-fr-head{
+  display:flex; align-items:center; gap:7px;
+  margin:0;
+  padding:7px 9px;
+  background:#F4EEE3;
+  border-block-end:1px solid rgba(11,38,33,.08);
+}
+.wa-fr-back{ flex:none; color:#54656F; font-size:1.1rem; line-height:1; margin-inline-end:-2px }
+.wa-fr-ava{
+  flex:none; inline-size:30px; block-size:30px; border-radius:50%;
+  background:var(--c,#8a8a8a); color:#fff;
+  display:grid; place-items:center; font-weight:700; font-size:.8rem;
+}
+.wa-fr-who{ display:flex; flex-direction:column; min-inline-size:0; line-height:1.25 }
+.wa-fr-who b{ font-family:inherit; font-size:.78rem; font-weight:700; color:#111b21; white-space:nowrap; overflow:hidden; text-overflow:ellipsis }
+.wa-fr-who i{ font-style:normal; font-size:.62rem; color:#667781; line-height:1.25; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden }
 .wa-fr-bubble{
   position:relative;
-  margin-inline-start:7px;
+  margin:12px 11px 14px;
   background:#fff;
   border-radius:9px;
   border-start-start-radius:1px;
@@ -624,11 +643,44 @@ body[lang="fr"] .wa-card.has-fr > .wa-fr{ display:block }
 .wa-fr-clamp.is-open .wa-fr-more::before{ content:"Voir moins \25B4" }
 
 @media (max-width:600px){
-  .wa-fr{ padding:10px 8px 12px }
-  .wa-fr-bubble{ padding:8px 9px 6px }
-  .wa-fr-bubble p{ font-size:.62rem; line-height:1.45; margin-bottom:6px }
-  .wa-fr-meta{ font-size:.56rem }
-  .wa-fr-more{ font-size:.64rem }
+  .wa-fr{ padding:0 }
+  .wa-fr-head{ margin:0; padding:6px 7px; gap:6px }
+  .wa-fr-ava{ inline-size:26px; block-size:26px; font-size:.72rem }
+  .wa-fr-who b{ font-size:.7rem }
+  .wa-fr-who i{ font-size:.55rem }
+  .wa-fr-bubble{ margin:10px 8px 12px; padding:8px 9px 6px }
+  .wa-fr-bubble p{ font-size:.6rem; line-height:1.45; margin-bottom:6px }
+  .wa-fr-meta{ font-size:.54rem }
+  .wa-fr-more{ font-size:.62rem }
+}
+
+/* ===== Repli mobile generique : apercu + bouton "voir plus" (mobile uniquement) =====
+   Le JS (clampify) ajoute la classe .mclamp + le bouton seulement si le contenu
+   depasse data-clamp, et seulement en dessous de 600px. */
+.about-card{ --clamp-bg:var(--card) }
+.bio-content{ --clamp-bg:var(--card) }
+.wa-fr-bubble{ --clamp-bg:#fff }
+@media (max-width:600px){
+  .mclamp{ position:relative; overflow:hidden; max-block-size:var(--clamp-h,240px) }
+  .mclamp.is-open{ max-block-size:none }
+  .mclamp::after{
+    content:""; position:absolute; inset-inline:0; inset-block-end:0; block-size:56px;
+    background:linear-gradient(transparent, var(--clamp-bg,#fff)); pointer-events:none; z-index:1;
+  }
+  .mclamp.is-open::after{ display:none }
+  .mclamp-btn{
+    position:absolute; inset-block-end:8px; inset-inline-start:50%; transform:translateX(-50%);
+    z-index:2; cursor:pointer; user-select:none;
+    border:1px solid var(--line,rgba(17,81,75,.22)); border-radius:999px;
+    background:#fff; color:var(--teal,#11514B);
+    font:600 .72rem/1 'Segoe UI',system-ui,-apple-system,sans-serif;
+    padding:6px 14px; white-space:nowrap; box-shadow:0 1px 4px rgba(20,40,38,.16);
+  }
+  .mclamp.is-open .mclamp-btn{ position:static; transform:none; margin:12px auto 2px; box-shadow:none }
+  .mclamp-btn::before{ content:attr(data-more-he) }
+  body[lang="fr"] .mclamp-btn::before{ content:attr(data-more-fr) }
+  .mclamp.is-open .mclamp-btn::before{ content:attr(data-less-he) }
+  body[lang="fr"] .mclamp.is-open .mclamp-btn::before{ content:attr(data-less-fr) }
 }
 
 .wa-card figcaption{
@@ -3250,7 +3302,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   h2{font-size:clamp(1.55rem, 5.8vw, 2rem);line-height:1.15}
   h3{font-size:clamp(1.15rem, 4.4vw, 1.4rem)}
 
-  section{padding-block:44px}
+  section{padding-block:28px}
   .section-head{margin-block-end:28px;gap:10px}
   .section-head .num-marker{margin-block-end:-18px}
   .num-marker{font-size:clamp(4.5rem, 14vw, 7rem);line-height:.85}
@@ -3306,7 +3358,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   .daycal-body p{font-size:.92rem;line-height:1.6}
 
   /* Afternoon section */
-  .afternoon-sec{padding-block:50px 60px}
+  .afternoon-sec{padding-block:32px 38px}
   .opt-pill{font-size:.85rem;padding:7px 14px}
   .opt-pill svg{inline-size:15px;block-size:15px}
   .afternoon-card{padding:22px 18px}
@@ -3348,7 +3400,8 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   .tier .features{font-size:.92rem}
 
   /* Sibling */
-  .sibling-sec{padding-block:60px}
+  .sibling-sec{padding-block:36px}
+  .bring-sec{padding-block:34px}
   .sibling-hero{padding:30px 22px;gap:22px;border-radius:var(--r-lg)}
   .sibling-pct-display{padding:24px 22px}
   .pct-num{font-size:clamp(4rem, 16vw, 6rem)}
@@ -3514,7 +3567,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="1.5">
         <img src="assets/testimonials/t3.jpg" alt="המלצה מטליה" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#C97B84">T</span>
+            <span class="wa-fr-who"><b>Talia</b><i>Maman de Shila (grands) et Sharona (petits)</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>Je recommande très vivement la Sunday School de Nofar !! Nofar est investie, dévouée, dotée d’une approche formidable avec les enfants et de méthodes d’enseignement innovantes qui les mobilisent dans l’apprentissage d’une manière inspirante et enthousiasmante !</p>
             <p>Au-delà du plaisir que les enfants ont à aller à la Sunday School, ils y acquièrent des connaissances importantes qu’ils ne reçoivent pas à Marc Chagall, notamment autour des récits de la Torah, de la langue hébraïque et des fêtes d’Israël.</p>
             <p>Au-delà de l’aspect pédagogique, l’accent est également mis sur la coopération, la prise de responsabilité personnelle et la lecture - un vrai bonus ! Je recommande chaleureusement 😊</p>
@@ -3529,7 +3587,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="-1">
         <img src="assets/testimonials/t5.jpg" alt="המלצה מלילך" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#7E9B6B">L</span>
+            <span class="wa-fr-who"><b>Lilach</b><i>Grand-mère de Maya (grands), Yanaï et Aviv (petits)</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>Je suis la grand-mère de trois petits-enfants inscrits à la Sunday School : Maya est dans le groupe des grands, et Aviv et Yanaï dans le groupe des petits. La première chose que je vois, c’est à quel point ils attendent le dimanche avec impatience. Ils n’ont pas l’impression d’« aller apprendre l’hébreu » : ils vont prendre du plaisir, s’imprégner de nouvelles choses et s’enrichir, tout en améliorant et en développant leur hébreu.</p>
             <p>Maya lit et écrit déjà avec une assurance que je ne lui connaissais pas auparavant, et j’entends les plus petits utiliser à la maison des mots et des chansons qu’ils apprennent. On voit que, pour Nofar, l’enseignement de l’hébreu, du Tanakh et du patrimoine israélien est une véritable mission, et que chaque enfant reçoit une attention adaptée à son niveau. Je recommande de tout cœur.</p>
             <span class="wa-fr-meta">16:25<span class="tick">✓✓</span></span>
@@ -3543,7 +3606,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="2">
         <img src="assets/testimonials/t6.jpg" alt="המלצה מנטלי" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#6E86B8">N</span>
+            <span class="wa-fr-who"><b>Natalie</b><i>Maman d'Emilia (grands) et Sofia (petits)</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>Je souhaite recommander chaleureusement la Sunday School que fréquentent mes filles. Pour nous, c’est bien plus qu’un cadre d’apprentissage : c’est une expérience porteuse de sens, qui crée un lien avec la langue hébraïque, la culture israélienne et notre patrimoine, de manière agréable, expérientielle et enrichissante.</p>
             <p>Mes filles, qui sont en CM1 et en CE1, aiment beaucoup venir chaque semaine, et l’on peut vraiment voir leur confiance en hébreu, leur vocabulaire et leur lien avec l’identité israélienne se renforcer au fil du temps.</p>
             <p>Cette structure associe l’apprentissage, l’expérience et le sentiment de communauté d’une manière très particulière, et nous sommes très heureux d’en faire partie ❤️</p>
@@ -3565,7 +3633,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="-1.5">
         <img src="assets/testimonials/t8.jpg" alt="המלצה מסאפיה" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#C9924B">S</span>
+            <span class="wa-fr-who"><b>Safiya</b><i>Maman de Shila · groupe des petits</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>Nofar est une enseignante dévouée et très motivée, qui s’investit de tout cœur auprès de chaque enfant et parvient à créer un véritable lien avec l’apprentissage.</p>
             <p>À la Sunday School, Shila apprend l’hébreu tout en découvrant en profondeur la culture juive et la culture israélienne, de manière expérientielle et agréable.</p>
             <p>L’investissement, la patience et l’attention de Nofar se ressentent dans chaque cours, et elle parvient à éveiller chez les enfants la curiosité et l’amour de l’apprentissage.</p>
@@ -3581,13 +3654,17 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="1">
         <img src="assets/testimonials/t7.jpg" alt="המלצה מרעיה" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble wa-fr-clamp">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#8A6FA8">R</span>
+            <span class="wa-fr-who"><b>Raaya</b><i>Maman d'Ella · groupe des grands</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <div class="wa-fr-text">
               <p>Nofar a commencé comme professeure particulière de ma fille pendant sa dernière année de primaire, et l’a préparée à intégrer un collège israélien après huit années dans un cadre francophone. Le résultat a été excellent : ma fille a connu une transition en douceur, réussie et surtout sereine.</p>
               <p>Par la suite, elle a également enseigné à ma fille cadette, alors en CE2. Cette fois, nous avons mis l’accent sur une routine d’apprentissage en hébreu, et non sur une préparation intensive. Lorsque Nofar m’a raconté qu’elle ouvrait un groupe d’apprentissage pour des filles de son âge, je n’ai pas hésité une seconde : nous l’avons rejoint ! Le groupe se déroulait comme un cours en classe et a exposé ma fille à des contenus excellents et approfondis. Les techniques d’apprentissage de Nofar sont elles aussi avancées et actuelles, et ont permis un apprentissage expérientiel unique, très différent de ce à quoi elle était habituée. La combinaison d’un tel groupe d’apprentissage avec des cours particuliers d’hébreu permet de rattraper le rythme des enfants des écoles israéliennes et réduit le niveau d’inquiétude des enfants qui étudient dans une langue étrangère et souhaitent s’intégrer dans des études en hébreu.</p>
               <p>Je recommande très chaleureusement Nofar comme enseignante, ainsi que ses excellents groupes d’apprentissage !</p>
             </div>
-            <button type="button" class="wa-fr-more" aria-label="Voir plus ou voir moins" onclick="this.closest('.wa-fr-bubble').classList.toggle('is-open')"></button>
             <span class="wa-fr-meta">21:13<span class="tick">✓✓</span></span>
           </div>
         </div>
@@ -3599,7 +3676,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="-2.5">
         <img src="assets/testimonials/t4.jpg" alt="המלצה מיערה" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#5FA0A0">Y</span>
+            <span class="wa-fr-who"><b>Yaara</b><i>Maman de Lili · groupe des grands</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>Nofar donne des cours d’hébreu le dimanche. Le groupe est petit, de qualité et agréable, et Nofar est une enseignante très talentueuse, patiente et agréable.</p>
             <p>Elle transmet des contenus riches et porteurs de sens, et intègre à ses cours des outils technologiques avancés et amusants, qui rendent l’apprentissage expérientiel et intéressant.</p>
             <p>Nofar aborde des sujets si importants pour les enfants qui étudient dans une école française et qui ne trouvent pas toujours suffisamment de place dans leur quotidien scolaire : la culture israélienne, la Torah, ainsi qu’un travail approfondi et enrichissant autour de la langue hébraïque.</p>
@@ -3615,7 +3697,12 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <figure class="wa-card has-fr" data-rot="1.8">
         <img src="assets/testimonials/t1.jpg" alt="המלצה מאלדד" loading="lazy" />
         <div class="wa-fr">
-          <div class="wa-fr-bubble">
+          <div class="wa-fr-head">
+            <span class="wa-fr-back" aria-hidden="true">‹</span>
+            <span class="wa-fr-ava" style="--c:#B0743F">E</span>
+            <span class="wa-fr-who"><b>Eldad</b><i>Papa de Neri · groupe des petits</i></span>
+          </div>
+          <div class="wa-fr-bubble" data-clamp="180">
             <p>La Sunday School de Nofar combine un apprentissage expérientiel dans une ambiance différente, ainsi que l’utilisation d’outils technologiques, grâce auxquels une grande partie des contenus qui nous manquent à Chagall est transmise : la Torah, le patrimoine juif et un enseignement de l’hébreu de haut niveau, visant à permettre aux enfants de suivre le rythme, en lecture et en écriture, des enfants scolarisés dans le système éducatif israélien.</p>
             <p>Nofar et Itay sont professionnels et charmants - nous recommandons vivement !</p>
             <span class="wa-fr-meta">20:05<span class="tick">✓✓</span></span>
@@ -3642,17 +3729,17 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
       <h2 data-i18n="about.title">בית בעברית. גשר בין שני העולמות.</h2>
     </div>
     <div class="about-cards">
-      <article class="about-card">
+      <article class="about-card" data-clamp="240">
         <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 12h6"/><path d="M10 8H8a4 4 0 1 0 0 8h2"/><path d="M14 8h2a4 4 0 1 1 0 8h-2"/></svg></div>
         <h3 data-i18n="about.c1.title">למה הסאנדי קיים</h3>
         <p data-i18n="about.lead"></p>
       </article>
-      <article class="about-card">
+      <article class="about-card" data-clamp="240">
         <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 2a7 7 0 0 0-4 12.6c.6.5 1 1.3 1 2.4h6c0-1.1.4-1.9 1-2.4A7 7 0 0 0 12 2z"/></svg></div>
         <h3 data-i18n="about.c2.title">שיטת ההוראה שלנו</h3>
         <p data-i18n="about.body"></p>
       </article>
-      <article class="about-card">
+      <article class="about-card" data-clamp="240">
         <div class="ac-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a7.5 7.5 0 0 1-10.8 6.7L4 20l1.8-5.2A7.5 7.5 0 1 1 21 11.5z"/><path d="M8.5 10.5h7"/><path d="M8.5 13.5h4"/></svg></div>
         <h3 data-i18n="about.c3.title">שפה שחיים בה</h3>
         <p data-i18n="about.body2"></p>
@@ -3924,7 +4011,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           <span class="subject" data-i18n="staff.nofar.subject">עברית וחינוך לשוני · מורשת ותרבות ישראלית</span>
           <div class="bio-block">
             <h4 class="bio-heading" data-i18n="staff.nofar.toggle">על נופר, מנהלת הסאנדי סקול</h4>
-            <div class="bio-content" data-i18n="staff.nofar.bio" data-html="true"></div>
+            <div class="bio-content" data-clamp="300" data-i18n="staff.nofar.bio" data-html="true"></div>
           </div>
         </div>
       </article>
@@ -3937,7 +4024,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           <span class="subject" data-i18n="staff.itay.subject">תנ"ך והוראת המקרא</span>
           <div class="bio-block">
             <h4 class="bio-heading" data-i18n="staff.itay.toggle">על איתי, מורה הסאנדי סקול</h4>
-            <div class="bio-content" data-i18n="staff.itay.bio" data-html="true"></div>
+            <div class="bio-content" data-clamp="300" data-i18n="staff.itay.bio" data-html="true"></div>
           </div>
         </div>
       </article>
@@ -3950,7 +4037,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
           <span class="subject" data-i18n="staff.orly.subject">Sunday Club · למידה חווייתית בעברית</span>
           <div class="bio-block">
             <h4 class="bio-heading" data-i18n="staff.orly.toggle">על אורלי, מורת הסאנדי קלאב</h4>
-            <div class="bio-content" data-i18n="staff.orly.bio" data-html="true"></div>
+            <div class="bio-content" data-clamp="300" data-i18n="staff.orly.bio" data-html="true"></div>
           </div>
         </div>
       </article>
@@ -4625,7 +4712,44 @@ function setLang(lang){
 
   // Re-render tiers because they're built dynamically with translated copy
   renderTiers();
+
+  // Recompute mobile "voir plus" clamps (content height changed with language)
+  clampify();
 }
+
+/* Mobile-only clamp: shows a preview + expand button only when content is long.
+   Targets any element with [data-clamp="<px>"]. Disabled above 600px. */
+function clampify(){
+  const mobile = window.matchMedia('(max-width:600px)').matches;
+  document.querySelectorAll('[data-clamp]').forEach(el => {
+    let btn = el.querySelector(':scope > .mclamp-btn');
+    if (mobile){
+      const h = parseInt(el.getAttribute('data-clamp'), 10) || 240;
+      el.classList.remove('mclamp','is-open');          // measure natural height
+      if (btn){ btn.remove(); btn = null; }
+      if (el.scrollHeight > h + 24){
+        el.style.setProperty('--clamp-h', h + 'px');
+        el.classList.add('mclamp');
+        btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'mclamp-btn';
+        btn.setAttribute('aria-label', 'plus / moins');
+        btn.setAttribute('data-more-he', 'קרא עוד');  btn.setAttribute('data-less-he', 'הצג פחות');
+        btn.setAttribute('data-more-fr', 'Voir plus'); btn.setAttribute('data-less-fr', 'Voir moins');
+        btn.addEventListener('click', () => el.classList.toggle('is-open'));
+        el.appendChild(btn);
+      } else {
+        el.style.removeProperty('--clamp-h');
+      }
+    } else {
+      el.classList.remove('mclamp','is-open');
+      el.style.removeProperty('--clamp-h');
+      if (btn) btn.remove();
+    }
+  });
+}
+let _clampT;
+window.addEventListener('resize', () => { clearTimeout(_clampT); _clampT = setTimeout(clampify, 150); });
 
 document.querySelectorAll('.lang-toggle button').forEach(btn => {
   btn.addEventListener('click', () => setLang(btn.dataset.lang));
