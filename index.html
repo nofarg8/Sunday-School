@@ -2,6 +2,10 @@
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8" />
+<!-- Anti-cache : force l'iframe (Wix) a recharger la derniere version a chaque ouverture -->
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
 <script>/* זיהוי הטמעה ב-iframe (וויקס): מבטל את נעילת המסך המלא כדי שהדף יזרום טבעי וישתלב באתר. בלינק הישיר הנעילה נשמרת. */try{if(window.self!==window.top){document.documentElement.classList.add('embedded');}}catch(e){document.documentElement.classList.add('embedded');}</script>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <title>בית הספר ליום ראשון של נופר · Nofar's Hebrew Sunday School</title>
@@ -4266,7 +4270,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
    ───────────────────────────────────────────────────────────── */
 const CONFIG = {
   // תאריכי סיום של כל שלב הרשמה (כולל היום, פורמט: YYYY-MM-DD)
-  earlyDeadline:   "2026-07-20",
+  earlyDeadline:   "2026-07-22",
   regularDeadline: "2026-08-10",
 
   // מחירים לשעה אקדמית
@@ -4461,7 +4465,7 @@ const I18N = {
     "tier.regular.label":"Phase 02 · Tarif standard",
     "tier.late.label":"Phase 03 · Tarif tardif",
     "tier.active":"השלב הפעיל",
-    "tier.deadline.early":"נסגר ב-20 ביולי",
+    "tier.deadline.early":"נסגר ב-22 ביולי",
     "tier.deadline.regular":"נסגר ב-10 באוגוסט",
     "tier.deadline.late":"מ-11 באוגוסט",
     "tier.cta.active":"להרשמה במחיר זה",
@@ -4646,7 +4650,7 @@ const I18N = {
     "tier.regular.label":"Phase 02 · Regular",
     "tier.late.label":"Phase 03 · Late",
     "tier.active":"Phase active",
-    "tier.deadline.early":"Clôture le 20 juillet",
+    "tier.deadline.early":"Clôture le 22 juillet",
     "tier.deadline.regular":"Clôture le 10 août",
     "tier.deadline.late":"À partir du 11 août",
     "tier.cta.active":"S'inscrire à ce tarif",
