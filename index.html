@@ -2173,6 +2173,42 @@ body[lang="fr"] .tier h3{font-family:var(--serif-fr);font-weight:600}
   letter-spacing:.06em;
 }
 
+/* ההרשמה נסגרה - מוצג במקום ריבועי המחיר החל מ-14.8 */
+.reg-closed{
+  grid-column:1 / -1;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-block-start:4px solid var(--terracotta);
+  border-radius:var(--r-lg);
+  box-shadow:var(--shadow-card);
+  padding:36px 28px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:14px;
+}
+.reg-closed h3{
+  font-family:var(--serif-he);
+  font-size:1.9rem;
+  font-weight:700;
+  color:var(--terracotta);
+  margin:0;
+}
+body[lang="fr"] .reg-closed h3{font-family:var(--serif-fr);font-weight:600}
+.reg-closed p{
+  margin:0;
+  font-size:1.05rem;
+  color:var(--ink-soft);
+}
+.reg-closed .contact-cta{margin-block-start:4px}
+/* כשההרשמה סגורה - אין טעם להציג את שלבי ההרשמה והכפתור להרשמה */
+body.reg-is-closed .contract-block{display:none}
+@media (min-width:768px){
+  .reg-closed{padding:44px 32px}
+  .reg-closed h3{font-size:2.2rem}
+}
+
 /* ═══════════════════════════════════════════════════════════════
    SIBLING DISCOUNT - סקשן עצמאי, בולט, לפני ההרשמה
    ═══════════════════════════════════════════════════════════════ */
@@ -4316,6 +4352,9 @@ const CONFIG = {
   // קישור לתוכנית התשלום בוויקס (לא Google Forms)
   contractURL: "https://www.sciencedu.online/sunday-school-by-nofar",
 
+  // וואטסאפ של נופר - לפנייה אישית אחרי שההרשמה נסגרת
+  whatsappURL: "https://wa.me/message/2TUM2WXKXIIEO1",
+
   // קובץ סרטון ההירו (יושב בתיקיית assets/ ב-repo)
   videoSrc: "assets/hero.mp4",
 };
@@ -4515,6 +4554,10 @@ const I18N = {
     "tier.feat.lastChance.1":"מחיר ההרשמה המוקדמת חוזר · לזמן מוגבל",
     "tier.feat.lastChance.2":"מקום מובטח בכיתת Sunday School וב-Sunday Club",
     "tier.feat.lastChance.3":"בכפוף לזמינות מקומות",
+
+    "tier.closed.title":"ההרשמה סגורה",
+    "tier.closed.body":"לפנייה אישית לנופר לחצו:",
+    "tier.closed.cta":"לוואטסאפ של נופר",
   },
 
   fr: {
@@ -4707,6 +4750,10 @@ const I18N = {
     "tier.feat.lastChance.1":"Le tarif anticipé de retour · pour une durée limitée",
     "tier.feat.lastChance.2":"Place garantie en classe à la Hebrew Sunday School et au Sunday Club",
     "tier.feat.lastChance.3":"Sous réserve de disponibilité",
+
+    "tier.closed.title":"Les inscriptions sont closes",
+    "tier.closed.body":"Pour contacter Nofar personnellement, cliquez :",
+    "tier.closed.cta":"Le WhatsApp de Nofar",
   }
 };
 
@@ -4814,8 +4861,6 @@ function dayAfter(dateStr){
 function renderTiers(){
   const dict = I18N[currentLang];
   const now = new Date();
-  const earlyEnd = endOfDay(CONFIG.earlyDeadline);
-  const regEnd   = endOfDay(CONFIG.regularDeadline);
   const lastChanceEnd = endOfDay(CONFIG.lastChanceDeadline);
 
   const lastChanceTier = {
@@ -4828,52 +4873,35 @@ function renderTiers(){
     features: [dict["tier.feat.lastChance.1"], dict["tier.feat.lastChance.2"], dict["tier.feat.lastChance.3"]].filter(Boolean),
   };
 
-  const all = [
-    {
-      key:"early",
-      label: dict["tier.early.label"],
-      title: dict["tier.early"],
-      price: CONFIG.prices.early,
-      deadline: dict["tier.deadline.early"],
-      passed: now > earlyEnd,
-      features: [dict["tier.feat.early.1"], dict["tier.feat.early.2"], dict["tier.feat.early.3"]].filter(Boolean),
-    },
-    {
-      key:"regular",
-      label: dict["tier.regular.label"],
-      title: dict["tier.regular"],
-      price: CONFIG.prices.regular,
-      deadline: dict["tier.deadline.regular"],
-      passed: now > regEnd,
-      features: [dict["tier.feat.regular.1"], dict["tier.feat.regular.2"], dict["tier.feat.regular.3"]].filter(Boolean),
-    },
-    {
-      key:"late",
-      label: dict["tier.late.label"],
-      title: dict["tier.late"],
-      price: CONFIG.prices.late,
-      deadline: dict["tier.deadline.late"],
-      passed: false,
-      features: [dict["tier.feat.late.1"], dict["tier.feat.late.2"], dict["tier.feat.late.3"]].filter(Boolean),
-    },
-  ];
-
-  let activeKey;
-  if (now <= earlyEnd) activeKey = "early";
-  else if (now <= regEnd) activeKey = "regular";
-  else activeKey = "late";
-
-  // כל עוד חלון "הזדמנות אחרונה" פתוח - מציגים ריבוע יחיד במחיר ההרשמה המוקדמת.
-  let visible;
-  if (!lastChanceTier.passed) {
-    activeKey = "lastChance";
-    visible = [lastChanceTier];
-  } else {
-    visible = all.filter(t => !t.passed);
-  }
-
   const container = document.getElementById('tiers');
   container.innerHTML = '';
+
+  // מ-14.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
+  const forceClosed = /[?&]closed=1/.test(location.search);
+  if (lastChanceTier.passed || forceClosed) {
+    container.className = 'tiers count-1';
+    const closed = document.createElement('div');
+    closed.className = 'reg-closed';
+    closed.innerHTML = `
+      <h3>${dict["tier.closed.title"]}</h3>
+      <p>${dict["tier.closed.body"]}</p>
+      <a href="${CONFIG.whatsappURL}" class="contact-cta" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+          <path d="M16 3C8.82 3 3 8.82 3 16c0 2.3.61 4.45 1.66 6.31L3 29l6.92-1.61A12.93 12.93 0 0 0 16 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm0 23.4c-1.9 0-3.7-.5-5.26-1.37l-.38-.22-3.86.9.92-3.76-.25-.39A10.4 10.4 0 1 1 16 26.4zm5.96-7.78c-.33-.16-1.94-.96-2.24-1.07-.3-.11-.52-.16-.74.17-.22.33-.85 1.07-1.04 1.29-.19.22-.39.25-.71.08-.33-.16-1.39-.51-2.65-1.64-.98-.87-1.64-1.95-1.83-2.28-.19-.33-.02-.51.14-.67.15-.15.33-.39.5-.58.16-.19.22-.33.33-.55.11-.22.05-.41-.03-.58-.08-.16-.74-1.79-1.02-2.45-.27-.64-.54-.55-.74-.56l-.63-.01a1.2 1.2 0 0 0-.88.41c-.3.33-1.15 1.12-1.15 2.74 0 1.62 1.18 3.18 1.34 3.4.16.22 2.32 3.55 5.63 4.97.79.34 1.4.54 1.88.69.79.25 1.51.21 2.08.13.63-.09 1.94-.79 2.21-1.55.27-.76.27-1.42.19-1.56-.08-.14-.3-.22-.63-.39z"/>
+        </svg>
+        <span>${dict["tier.closed.cta"]}</span>
+      </a>
+    `;
+    container.appendChild(closed);
+    document.body.classList.add('reg-is-closed');
+    return;
+  }
+  document.body.classList.remove('reg-is-closed');
+
+  // כל עוד חלון "הזדמנות אחרונה" פתוח - מציגים ריבוע יחיד במחיר ההרשמה המוקדמת.
+  const activeKey = "lastChance";
+  const visible = [lastChanceTier];
+
   container.className = 'tiers count-' + visible.length;
 
   const isPlaceholderPrice = (p) => !p || /^\[.*\]$/.test(String(p).trim()) || String(p).trim() === '';
