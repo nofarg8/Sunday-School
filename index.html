@@ -2111,6 +2111,30 @@ body[lang="fr"] .tier h3{font-family:var(--serif-fr);font-weight:600}
   border:1px dashed var(--line);
 }
 .tier .deadline b{color:var(--ink);font-weight:600}
+/* "עד 13.8" - הדדליין של ההזדמנות האחרונה: גדול ובולט */
+.tier .deadline.urgent{
+  font-size:1.25rem;
+  font-weight:600;
+  color:var(--terracotta);
+  background:rgba(224,135,90,.1);
+  border:2px solid var(--terracotta);
+  border-radius:var(--r-sm);
+  padding:14px 18px;
+  text-align:center;
+  letter-spacing:.01em;
+  box-shadow:0 8px 20px -14px rgba(224,135,90,.9);
+}
+.tier .deadline.urgent b{
+  color:var(--terracotta);
+  font-weight:800;
+  font-size:1.5rem;
+  display:block;
+  margin-block-start:2px;
+}
+@media (min-width:768px){
+  .tier .deadline.urgent{font-size:1.35rem;padding:16px 20px}
+  .tier .deadline.urgent b{font-size:1.7rem}
+}
 .tier .features{
   list-style:none;
   padding:0;
@@ -4487,7 +4511,7 @@ const I18N = {
 
     "tier.lastChance":"הזדמנות אחרונה להירשם",
     "tier.lastChance.label":"Dernière chance · Tarif anticipé",
-    "tier.deadline.lastChance":"עד 13 באוגוסט",
+    "tier.deadline.lastChance":"ההרשמה במחיר הזה נסגרת<b>ב-13 באוגוסט</b>",
     "tier.feat.lastChance.1":"מחיר ההרשמה המוקדמת חוזר · לזמן מוגבל",
     "tier.feat.lastChance.2":"מקום מובטח בכיתת Sunday School וב-Sunday Club",
     "tier.feat.lastChance.3":"בכפוף לזמינות מקומות",
@@ -4679,7 +4703,7 @@ const I18N = {
 
     "tier.lastChance":"Dernière chance pour s'inscrire",
     "tier.lastChance.label":"Dernière chance · Tarif anticipé",
-    "tier.deadline.lastChance":"Jusqu'au 13 août",
+    "tier.deadline.lastChance":"Les inscriptions à ce tarif ferment<b>le 13 août</b>",
     "tier.feat.lastChance.1":"Le tarif anticipé de retour · pour une durée limitée",
     "tier.feat.lastChance.2":"Place garantie en classe à la Hebrew Sunday School et au Sunday Club",
     "tier.feat.lastChance.3":"Sous réserve de disponibilité",
@@ -4871,7 +4895,7 @@ function renderTiers(){
       <span class="label">${t.label}</span>
       <h3>${t.title}</h3>
       ${priceHTML}
-      <div class="deadline">${t.deadline}</div>
+      <div class="deadline${t.key === 'lastChance' ? ' urgent' : ''}">${t.deadline}</div>
       <ul class="features">
         ${t.features.map(f => `<li>${f}</li>`).join('')}
       </ul>
