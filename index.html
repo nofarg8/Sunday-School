@@ -4535,7 +4535,7 @@ const I18N = {
     "tier.deadline.early":"נסגר ב-22 ביולי",
     "tier.deadline.regular":"נסגר ב-10 באוגוסט",
     "tier.deadline.late":"מ-11 באוגוסט",
-    "tier.cta.active":"להרשמה במחיר זה",
+    "tier.cta.active":"להרשמה",
     "tier.cta.future":"שמרו מקום מראש",
     "tier.priceTBD":"[מחיר יוזרק]",
     "tier.feat.early.1":"המחיר הנמוך ביותר · חיסכון משמעותי",
@@ -4549,11 +4549,11 @@ const I18N = {
     "tier.feat.late.3":"",
 
     "tier.lastChance":"הזדמנות אחרונה להירשם",
-    "tier.lastChance.label":"Dernière chance · Tarif anticipé",
+    "tier.lastChance.label":"",
     "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-15 באוגוסט</b>",
-    "tier.feat.lastChance.1":"מחיר ההרשמה המוקדמת חוזר · לזמן מוגבל",
-    "tier.feat.lastChance.2":"מקום מובטח בכיתת Sunday School וב-Sunday Club",
-    "tier.feat.lastChance.3":"בכפוף לזמינות מקומות",
+    "tier.feat.lastChance.1":"מקום בכיתת Sunday School וב-Sunday Club",
+    "tier.feat.lastChance.2":"בכפוף לזמינות מקומות",
+    "tier.feat.lastChance.3":"",
 
     "tier.closed.title":"ההרשמה סגורה",
     "tier.closed.body":"לפנייה אישית לנופר לחצו:",
@@ -4731,7 +4731,7 @@ const I18N = {
     "tier.deadline.early":"Clôture le 22 juillet",
     "tier.deadline.regular":"Clôture le 10 août",
     "tier.deadline.late":"À partir du 11 août",
-    "tier.cta.active":"S'inscrire à ce tarif",
+    "tier.cta.active":"S'inscrire",
     "tier.cta.future":"Réserver une place",
     "tier.priceTBD":"[tarif à venir]",
     "tier.feat.early.1":"Le tarif le plus bas · économie significative",
@@ -4745,11 +4745,11 @@ const I18N = {
     "tier.feat.late.3":"",
 
     "tier.lastChance":"Dernière chance pour s'inscrire",
-    "tier.lastChance.label":"Dernière chance · Tarif anticipé",
+    "tier.lastChance.label":"",
     "tier.deadline.lastChance":"Les inscriptions ferment<b>le 15 août</b>",
-    "tier.feat.lastChance.1":"Le tarif anticipé de retour · pour une durée limitée",
-    "tier.feat.lastChance.2":"Place garantie en classe à la Hebrew Sunday School et au Sunday Club",
-    "tier.feat.lastChance.3":"Sous réserve de disponibilité",
+    "tier.feat.lastChance.1":"Place en classe à la Hebrew Sunday School et au Sunday Club",
+    "tier.feat.lastChance.2":"Sous réserve de disponibilité",
+    "tier.feat.lastChance.3":"",
 
     "tier.closed.title":"Les inscriptions sont closes",
     "tier.closed.body":"Pour contacter Nofar personnellement, cliquez :",
@@ -4919,8 +4919,7 @@ function renderTiers(){
     const article = document.createElement('article');
     article.className = 'tier' + (isActive ? ' active' : '');
     article.innerHTML = `
-      ${isActive ? `<span class="ribbon">${dict["tier.active"]}</span>` : ''}
-      <span class="label">${t.label}</span>
+      ${t.label ? `<span class="label">${t.label}</span>` : ''}
       <h3>${t.title}</h3>
       ${priceHTML}
       <div class="deadline${t.key === 'lastChance' ? ' urgent' : ''}">${t.deadline}</div>
