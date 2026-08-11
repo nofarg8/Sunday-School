@@ -2111,7 +2111,7 @@ body[lang="fr"] .tier h3{font-family:var(--serif-fr);font-weight:600}
   border:1px dashed var(--line);
 }
 .tier .deadline b{color:var(--ink);font-weight:600}
-/* "עד 13.8" - הדדליין של ההזדמנות האחרונה: גדול ובולט */
+/* "עד 15.8" - הדדליין של ההזדמנות האחרונה: גדול ובולט */
 .tier .deadline.urgent{
   font-size:1.25rem;
   font-weight:600;
@@ -4333,8 +4333,8 @@ const CONFIG = {
   earlyDeadline:   "2026-07-22",
   regularDeadline: "2026-08-10",
 
-  // "הזדמנות אחרונה להירשם" - ריבוע יחיד במחיר ההרשמה המוקדמת, עד 13.8
-  lastChanceDeadline: "2026-08-13",
+  // "הזדמנות אחרונה להירשם" - ריבוע יחיד במחיר ההרשמה המוקדמת, עד 15.8
+  lastChanceDeadline: "2026-08-15",
 
   // מחירים לשעה אקדמית
   prices: {
@@ -4550,7 +4550,7 @@ const I18N = {
 
     "tier.lastChance":"הזדמנות אחרונה להירשם",
     "tier.lastChance.label":"Dernière chance · Tarif anticipé",
-    "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-13 באוגוסט</b>",
+    "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-15 באוגוסט</b>",
     "tier.feat.lastChance.1":"מחיר ההרשמה המוקדמת חוזר · לזמן מוגבל",
     "tier.feat.lastChance.2":"מקום מובטח בכיתת Sunday School וב-Sunday Club",
     "tier.feat.lastChance.3":"בכפוף לזמינות מקומות",
@@ -4746,7 +4746,7 @@ const I18N = {
 
     "tier.lastChance":"Dernière chance pour s'inscrire",
     "tier.lastChance.label":"Dernière chance · Tarif anticipé",
-    "tier.deadline.lastChance":"Les inscriptions ferment<b>le 13 août</b>",
+    "tier.deadline.lastChance":"Les inscriptions ferment<b>le 15 août</b>",
     "tier.feat.lastChance.1":"Le tarif anticipé de retour · pour une durée limitée",
     "tier.feat.lastChance.2":"Place garantie en classe à la Hebrew Sunday School et au Sunday Club",
     "tier.feat.lastChance.3":"Sous réserve de disponibilité",
@@ -4876,7 +4876,7 @@ function renderTiers(){
   const container = document.getElementById('tiers');
   container.innerHTML = '';
 
-  // מ-14.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
+  // מ-16.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
   const forceClosed = /[?&]closed=1/.test(location.search);
   if (lastChanceTier.passed || forceClosed) {
     container.className = 'tiers count-1';
