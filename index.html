@@ -2111,7 +2111,7 @@ body[lang="fr"] .tier h3{font-family:var(--serif-fr);font-weight:600}
   border:1px dashed var(--line);
 }
 .tier .deadline b{color:var(--ink);font-weight:600}
-/* "עד 17.8" - הדדליין של ההזדמנות האחרונה: גדול ובולט */
+/* "עד 22.8" - הדדליין של ההזדמנות האחרונה: גדול ובולט */
 .tier .deadline.urgent{
   font-size:1.25rem;
   font-weight:600;
@@ -4333,8 +4333,8 @@ const CONFIG = {
   earlyDeadline:   "2026-07-22",
   regularDeadline: "2026-08-10",
 
-  // "הזדמנות אחרונה להירשם" - ריבוע יחיד, עד 17.8
-  lastChanceDeadline: "2026-08-17",
+  // "הזדמנות אחרונה להירשם" - ריבוע יחיד, עד 22.8
+  lastChanceDeadline: "2026-08-22",
 
   // מחירים לשעה אקדמית
   prices: {
@@ -4550,7 +4550,7 @@ const I18N = {
 
     "tier.lastChance":"הזדמנות אחרונה להירשם",
     "tier.lastChance.label":"",
-    "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-17 באוגוסט</b>",
+    "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-22 באוגוסט</b>",
     "tier.feat.lastChance.1":"מקום בכיתת Sunday School וב-Sunday Club",
     "tier.feat.lastChance.2":"בכפוף לזמינות מקומות",
     "tier.feat.lastChance.3":"",
@@ -4746,7 +4746,7 @@ const I18N = {
 
     "tier.lastChance":"Dernière chance pour s'inscrire",
     "tier.lastChance.label":"",
-    "tier.deadline.lastChance":"Les inscriptions ferment<b>le 17 août</b>",
+    "tier.deadline.lastChance":"Les inscriptions ferment<b>le 22 août</b>",
     "tier.feat.lastChance.1":"Place en classe à la Hebrew Sunday School et au Sunday Club",
     "tier.feat.lastChance.2":"Sous réserve de disponibilité",
     "tier.feat.lastChance.3":"",
@@ -4876,7 +4876,7 @@ function renderTiers(){
   const container = document.getElementById('tiers');
   container.innerHTML = '';
 
-  // מ-18.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
+  // מ-23.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
   const forceClosed = /[?&]closed=1/.test(location.search);
   if (lastChanceTier.passed || forceClosed) {
     container.className = 'tiers count-1';
