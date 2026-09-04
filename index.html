@@ -3514,9 +3514,81 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   footer{padding-block:28px;font-size:.8rem}
 }
 
+/* ═══════════════════════════════════════════════════════════════
+   SIGNUP BANNER - סקשן ההרשמה העליון, מעל ההירו והסרטון
+   ═══════════════════════════════════════════════════════════════ */
+.signup-banner{
+  background:linear-gradient(135deg, var(--teal-deep) 0%, var(--teal) 55%, var(--teal-2) 100%);
+  color:var(--cream);
+  padding:18px 20px;
+  border-block-end:3px solid var(--terracotta);
+}
+.signup-banner-inner{
+  max-inline-size:1100px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  text-align:center;
+}
+.signup-banner-text{
+  margin:0;
+  font-family:var(--serif-he);
+  font-size:1.15rem;
+  font-weight:700;
+  line-height:1.4;
+  letter-spacing:.01em;
+}
+body[lang="fr"] .signup-banner-text{font-family:var(--serif-fr);font-weight:600}
+.signup-banner-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  background:var(--terracotta);
+  color:#fff;
+  padding:13px 30px;
+  border-radius:999px;
+  font-family:var(--sans-he);
+  font-weight:700;
+  font-size:1.02rem;
+  white-space:nowrap;
+  box-shadow:0 10px 24px -10px rgba(0,0,0,.55);
+  transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+.signup-banner-cta:hover{background:var(--terra-deep);transform:translateY(-2px);box-shadow:0 14px 30px -12px rgba(0,0,0,.6)}
+.signup-banner-cta svg{inline-size:19px;block-size:19px;flex-shrink:0}
+/* בעברית (RTL) החץ מצביע שמאלה */
+[dir="rtl"] .signup-banner-cta svg{transform:scaleX(-1)}
+@media (min-width:820px){
+  .signup-banner{padding:22px 28px}
+  .signup-banner-inner{flex-direction:row;gap:26px;text-align:start}
+  .signup-banner-text{font-size:1.45rem}
+  .signup-banner-cta{font-size:1.08rem;padding:14px 34px}
+}
+@media (max-width:520px){
+  .signup-banner{padding:16px 16px}
+  .signup-banner-text{font-size:1.02rem}
+  .signup-banner-cta{font-size:.96rem;padding:12px 26px;inline-size:100%;justify-content:center}
+}
+
 </style>
 </head>
 <body class="locked" lang="he">
+
+<!-- ════════════════════════════════════════════════════════════════
+     SIGNUP BANNER - מעל ההירו והסרטון
+     ════════════════════════════════════════════════════════════════ -->
+<section class="signup-banner" aria-label="הרשמה">
+  <div class="signup-banner-inner">
+    <p class="signup-banner-text" data-i18n="signup.headline">אפשרות אחרונה להירשם לסאנדי סקול תשפ״ז</p>
+    <a class="signup-banner-cta" data-cta="contract" href="#" target="_blank" rel="noopener">
+      <span data-i18n="signup.cta">לפרטים והרשמה</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+</section>
 
 <!-- ════════════════════════════════════════════════════════════════
      HERO - full screen, locked. Click play to reveal page.
@@ -4549,6 +4621,8 @@ const I18N = {
     "tier.feat.late.2":"בכפוף לזמינות מקומות",
     "tier.feat.late.3":"",
 
+    "signup.headline":"אפשרות אחרונה להירשם לסאנדי סקול תשפ״ז",
+    "signup.cta":"לפרטים והרשמה",
     "tier.lastChance":"אפשרות אחרונה להירשם לסאנדי סקול תשפ״ז",
     "tier.lastChance.label":"",
     "tier.deadline.lastChance":"",
@@ -4745,6 +4819,8 @@ const I18N = {
     "tier.feat.late.2":"Sous réserve de disponibilité",
     "tier.feat.late.3":"",
 
+    "signup.headline":"Dernière possibilité de s'inscrire à la Hebrew Sunday School 2026-2027",
+    "signup.cta":"Informations et inscription",
     "tier.lastChance":"Dernière possibilité de s'inscrire à la Hebrew Sunday School 2026-2027",
     "tier.lastChance.label":"",
     "tier.deadline.lastChance":"",
