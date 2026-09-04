@@ -3519,10 +3519,10 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
    ═══════════════════════════════════════════════════════════════ */
 .signup-banner{
   position:relative;
-  background:linear-gradient(135deg, var(--teal-deep) 0%, var(--teal) 55%, var(--teal-2) 100%);
-  color:var(--cream);
+  background:linear-gradient(135deg, var(--terra-deep) 0%, var(--terracotta) 52%, #EFA477 100%);
+  color:#FFFFFF;
   padding:30px 20px;
-  border-block-end:5px solid var(--terracotta);
+  border-block-end:5px solid var(--teal-deep);
   overflow:hidden;
 }
 /* זוהר רך מאחורי הבאנר - נותן לו נפח בלי להעמיס */
@@ -3534,7 +3534,7 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   inline-size:min(760px, 105%);
   block-size:230%;
   transform:translateX(-50%);
-  background:radial-gradient(closest-side, rgba(224,135,90,.30), rgba(224,135,90,0) 72%);
+  background:radial-gradient(closest-side, rgba(255,255,255,.30), rgba(255,255,255,0) 72%);
   pointer-events:none;
 }
 .signup-banner-inner{
@@ -3555,15 +3555,15 @@ body[lang="fr"] footer > .container > div{font-family:var(--serif-fr)}
   font-weight:700;
   line-height:1.32;
   letter-spacing:.01em;
-  text-shadow:0 2px 12px rgba(0,0,0,.28);
+  text-shadow:0 2px 10px rgba(120,58,24,.4);
 }
 body[lang="fr"] .signup-banner-text{font-family:var(--serif-fr);font-weight:600}
 .signup-banner-cta{
   display:inline-flex;
   align-items:center;
   gap:11px;
-  background:var(--terracotta);
-  color:#fff;
+  background:var(--teal-deep);
+  color:var(--cream);
   padding:18px 44px;
   border-radius:999px;
   font-family:var(--sans-he);
@@ -3571,16 +3571,16 @@ body[lang="fr"] .signup-banner-text{font-family:var(--serif-fr);font-weight:600}
   font-size:1.25rem;
   letter-spacing:.01em;
   white-space:nowrap;
-  box-shadow:0 14px 30px -12px rgba(0,0,0,.6), 0 0 0 0 rgba(224,135,90,.55);
+  box-shadow:0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(255,255,255,.75);
   animation:signupPulse 2.6s ease-out infinite;
   transition:background .2s ease, transform .2s ease;
 }
 @keyframes signupPulse{
-  0%   {box-shadow:0 14px 30px -12px rgba(0,0,0,.6), 0 0 0 0 rgba(224,135,90,.55)}
-  70%  {box-shadow:0 14px 30px -12px rgba(0,0,0,.6), 0 0 0 20px rgba(224,135,90,0)}
-  100% {box-shadow:0 14px 30px -12px rgba(0,0,0,.6), 0 0 0 0 rgba(224,135,90,0)}
+  0%   {box-shadow:0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(255,255,255,.7)}
+  70%  {box-shadow:0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 20px rgba(255,255,255,0)}
+  100% {box-shadow:0 14px 30px -12px rgba(0,0,0,.55), 0 0 0 0 rgba(255,255,255,0)}
 }
-.signup-banner-cta:hover{background:var(--terra-deep);transform:translateY(-2px) scale(1.02);animation-play-state:paused}
+.signup-banner-cta:hover{background:var(--teal);transform:translateY(-2px) scale(1.02);animation-play-state:paused}
 .signup-banner-cta svg{inline-size:22px;block-size:22px;flex-shrink:0}
 /* בעברית (RTL) החץ מצביע שמאלה */
 [dir="rtl"] .signup-banner-cta svg{transform:scaleX(-1)}
