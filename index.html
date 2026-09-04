@@ -4333,8 +4333,9 @@ const CONFIG = {
   earlyDeadline:   "2026-07-22",
   regularDeadline: "2026-08-10",
 
-  // "הזדמנות אחרונה להירשם" - ריבוע יחיד, עד 22.8
-  lastChanceDeadline: "2026-08-22",
+  // ריבוע ההרשמה. ריק = ההרשמה פתוחה ללא תאריך סיום.
+  // כדי לסגור אותה שוב, מלאי תאריך בפורמט YYYY-MM-DD (למשל "2026-09-01").
+  lastChanceDeadline: "",
 
   // מחירים לשעה אקדמית
   prices: {
@@ -4548,9 +4549,9 @@ const I18N = {
     "tier.feat.late.2":"בכפוף לזמינות מקומות",
     "tier.feat.late.3":"",
 
-    "tier.lastChance":"הזדמנות אחרונה להירשם",
+    "tier.lastChance":"אפשרות אחרונה להירשם לסאנדי סקול תשפ״ז",
     "tier.lastChance.label":"",
-    "tier.deadline.lastChance":"ההרשמה נסגרת<b>ב-22 באוגוסט</b>",
+    "tier.deadline.lastChance":"",
     "tier.feat.lastChance.1":"מקום בכיתת Sunday School וב-Sunday Club",
     "tier.feat.lastChance.2":"בכפוף לזמינות מקומות",
     "tier.feat.lastChance.3":"",
@@ -4744,9 +4745,9 @@ const I18N = {
     "tier.feat.late.2":"Sous réserve de disponibilité",
     "tier.feat.late.3":"",
 
-    "tier.lastChance":"Dernière chance pour s'inscrire",
+    "tier.lastChance":"Dernière possibilité de s'inscrire à la Hebrew Sunday School 2026-2027",
     "tier.lastChance.label":"",
-    "tier.deadline.lastChance":"Les inscriptions ferment<b>le 22 août</b>",
+    "tier.deadline.lastChance":"",
     "tier.feat.lastChance.1":"Place en classe à la Hebrew Sunday School et au Sunday Club",
     "tier.feat.lastChance.2":"Sous réserve de disponibilité",
     "tier.feat.lastChance.3":"",
@@ -4861,7 +4862,7 @@ function dayAfter(dateStr){
 function renderTiers(){
   const dict = I18N[currentLang];
   const now = new Date();
-  const lastChanceEnd = endOfDay(CONFIG.lastChanceDeadline);
+  const lastChanceEnd = CONFIG.lastChanceDeadline ? endOfDay(CONFIG.lastChanceDeadline) : null;
 
   const lastChanceTier = {
     key:"lastChance",
@@ -4869,14 +4870,14 @@ function renderTiers(){
     title: dict["tier.lastChance"],
     price: CONFIG.prices.lastChance,
     deadline: dict["tier.deadline.lastChance"],
-    passed: now > lastChanceEnd,
+    passed: lastChanceEnd ? now > lastChanceEnd : false,
     features: [dict["tier.feat.lastChance.1"], dict["tier.feat.lastChance.2"], dict["tier.feat.lastChance.3"]].filter(Boolean),
   };
 
   const container = document.getElementById('tiers');
   container.innerHTML = '';
 
-  // מ-23.8 ההרשמה סגורה. ?closed=1 בכתובת מאפשר לראות תצוגה מקדימה של המצב הזה.
+  // ההרשמה נסגרת רק כשמוגדר lastChanceDeadline ועבר. ?closed=1 מציג תצוגה מקדימה של המצב הסגור.
   const forceClosed = /[?&]closed=1/.test(location.search);
   if (lastChanceTier.passed || forceClosed) {
     container.className = 'tiers count-1';
@@ -4922,7 +4923,7 @@ function renderTiers(){
       ${t.label ? `<span class="label">${t.label}</span>` : ''}
       <h3>${t.title}</h3>
       ${priceHTML}
-      <div class="deadline${t.key === 'lastChance' ? ' urgent' : ''}">${t.deadline}</div>
+      ${t.deadline ? `<div class="deadline${t.key === 'lastChance' ? ' urgent' : ''}">${t.deadline}</div>` : ''}
       <ul class="features">
         ${t.features.map(f => `<li>${f}</li>`).join('')}
       </ul>
